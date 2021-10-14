@@ -9,13 +9,13 @@ import org.xero1425.base.controllers.AutoController;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class MyName extends XeroRobot {
-  public MyName() {
+public class Robot extends XeroRobot {
+  public Robot() {
     super(0.02) ;
   }
   
   public String getName() {
-    return "romi2021";
+    return "Robot";
   }
 
   public AutoController createAutoController() {

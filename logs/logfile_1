@@ -1,0 +1,7 @@
+000.6727: Info: global: robot code starting
+000.8386: Info: global: Mac Address: NONE
+000.8415: Info: global: reading params for bot 'COMPETITION'
+000.8429: Error: global: cannot open file 'src/main/deploy/BotBot.dat' for reading - src\main\deploy\BotBot.dat (The system cannot find the file specified)
+000.8435: Error: global: error reading parameters file
+001.0373: Info: global: initializing robot
+001.0597: Error: global: the robot subsystem was not set in hardwareInit()
