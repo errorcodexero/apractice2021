@@ -3,6 +3,8 @@ package frc.robot;
 import org.xero1425.base.XeroRobot;
 import org.xero1425.base.controllers.AutoController;
 
+import frc.robot.practbotsubsystem.PractBotSubsystem;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -23,7 +25,10 @@ public class PractBot extends XeroRobot {
   }
   
   protected void hardwareInit() throws Exception {
+    PractBotSubsystem robotsub = new PractBotSubsystem(this) ;
+    setRobotSubsystem(robotsub);
   }
+  
 
   //support simualation
 }

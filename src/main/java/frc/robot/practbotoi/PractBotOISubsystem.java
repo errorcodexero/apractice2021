@@ -14,7 +14,7 @@ public class PractBotOISubsystem extends OISubsystem {
     
     private PractBotOIDevice oi_;
     
-    public final static String SubsystemName = "droidoi";
+    public final static String SubsystemName = "practbotoi";
     private final static String OIHIDIndexName = "hw:driverstation:hid:oi";
 
     PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db) {

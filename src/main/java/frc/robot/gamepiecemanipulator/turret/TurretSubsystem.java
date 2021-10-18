@@ -8,13 +8,13 @@ import org.xero1425.base.motorsubsystem.MotorEncoderSubsystem;
 
 public class TurretSubsystem extends MotorEncoderSubsystem {
     public static final String SubsystemName = "turret";
-    private MotorController turret_;
+    private MotorController turret_; //MotorEncoderSubsystem turret_;
 
     public TurretSubsystem(Subsystem parent) throws Exception {
         super(parent, "turret", false) ;
 
         turret_ = getRobot().getMotorFactory().createMotor("turret", "hw:turret:motor") ;
-
+        //TBD check in motor factory... need to declare an encoder here? or does factory create the neo encoders default?
     }
 
     public void setTurretPower(double p) throws BadMotorRequestException, MotorRequestFailedException {

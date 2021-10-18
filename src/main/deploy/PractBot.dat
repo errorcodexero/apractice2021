@@ -1,0 +1,41 @@
+
+#
+# Params File :)
+#
+
+###################################################################################################
+
+# Drivebase
+hw:tankdrive:motors:left:1:canid                                1                           # CAN ID 1
+hw:tankdrive:motors:left:1:type                                 "talon_fx"                  # falcon motors
+hw:tankdrive:motors:left:2:canid                                2                           # CAN ID 2
+hw:tankdrive:motors:left:2:type                                 "talon_fx"
+hw:tankdrive:motors:right:1:canid                               3                           # CAN ID 3
+hw:tankdrive:motors:right:1:type                                "talon_fx"
+hw:tankdrive:motors:right:2:canid                               4                           # CAN ID 4
+hw:tankdrive:motors:right:2:type                                "talon_fx"
+hw:tankdrive:motors:right:inverted                              true                        # Invert right motors
+
+# Intake
+hw:intake:motor:canid                                           6                           # CAN ID 6
+hw:intake:motor:type                                            "sparkmax_brushless"        # AKA Neo
+
+# Turret
+hw:turret:motor:canid                                           5                           # CAN ID 5
+hw:turret:motor:type                                            "sparkmax_brushless"        
+
+###################################################################################################
+
+# Drivebase Encoders
+##TBD ADD##
+
+# Turret Encoders
+##TBD ADD##
+hw:turret:motor:encoder                                   true                       # Use encoder in NEO motor
+
+
+###################################################################################################
+
+# OI
+oi:automode                                                     0
+##TBD ADD more OI buttons##
