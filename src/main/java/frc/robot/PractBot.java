@@ -31,7 +31,6 @@ public class PractBot extends XeroRobot {
     setRobotSubsystem(robotsub);
   }
   
-
   public String getSimulationFileName() {
     String ret = SimArgs.InputFileName;
     if (ret != null)
