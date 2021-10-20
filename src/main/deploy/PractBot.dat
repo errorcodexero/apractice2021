@@ -33,7 +33,6 @@ hw:turret:motor:type                                            "sparkmax_brushl
 ##TBD ADD##
 hw:turret:motor:encoder                                   true                       # Use encoder in NEO motor
 
-
 ###################################################################################################
 
 # OI

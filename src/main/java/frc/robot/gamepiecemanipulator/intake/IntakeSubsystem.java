@@ -27,4 +27,10 @@ public class IntakeSubsystem extends MotorEncoderSubsystem {
         setDefaultAction(new MotorEncoderHoldAction(this)) ;
     }
 
+    @Override 
+    public void computeMyState() throws Exception {
+        super.computeMyState();
+        //anything else?
+    }
+
 }
