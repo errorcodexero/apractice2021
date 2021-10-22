@@ -31,7 +31,9 @@ hw:turret:motor:type                                            "sparkmax_brushl
 
 # Turret Encoders
 ##TBD ADD##
-hw:turret:motor:encoder                                   true                       # Use encoder in NEO motor
+hw:turret:encoder:quad:motor                                   true                       # Use encoder in NEO motor
+hw:turret:encoder:quad:m                                       1 //not actual
+hw:turret:encoder:quad:b                                       0 //not actual
 
 ###################################################################################################
 

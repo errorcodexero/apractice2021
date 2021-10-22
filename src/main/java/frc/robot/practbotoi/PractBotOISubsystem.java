@@ -17,7 +17,7 @@ public class PractBotOISubsystem extends OISubsystem {
     public final static String SubsystemName = "practbotoi";
     private final static String OIHIDIndexName = "hw:driverstation:hid:oi";
 
-    PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db) {
+    public PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db) {
         super(parent, SubsystemName, db);
 
         int index ; //usually, this = 2
