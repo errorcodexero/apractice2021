@@ -17,8 +17,10 @@ public class TurretTurnAction extends MotorEncoderGotoAction {
 
     private PIDCtrl pid_ ;
 
+    private double threshold_ ;
+
     public TurretTurnAction(TurretSubsystem sub, double desired) throws BadParameterTypeException, MissingParameterException {
-        super(sub, "intake:motor:collect:power", true);
+        super(sub, "turret:motor:collect:power", true);
         sub_ = sub;
         turret_power_ = sub_.getRobot().getSettingsParser().get("turret:motor:power").getDouble();
 
@@ -27,15 +29,20 @@ public class TurretTurnAction extends MotorEncoderGotoAction {
         //TBD check in motor factory... need to declare an encoder here? or does factory create the neo encoders default?
         
         desired_ = desired;
+
+        threshold_ = sub.getRobot().getSettingsParser().get("turret:fire_threshold").getDouble() ;
+
     }
 
     @Override
     public void start() throws Exception {
         super.start();
         
-        //TODO: check that turret_power_ is within a given range before assigning it to sub_
-        sub_.setTurretPower(turret_power_);
+        if (turret_power_ > sub_.getMinSafeAngle() && turret_power_ < sub_.getMaxSafeAngle()) {
+            sub_.setTurretPower(turret_power_);
+        }
         pid_ = new PIDCtrl(getSubsystem().getRobot().getSettingsParser(), "turret:follow", true);
+    
     }
 
     @Override
