@@ -34,9 +34,22 @@ hw:turret:motor:type                                            "sparkmax_brushl
 hw:turret:encoder:quad:motor                                   true                       # Use encoder in NEO motor
 hw:turret:encoder:quad:m                                       1 //not actual
 hw:turret:encoder:quad:b                                       0 //not actual
+turret:min                                                      -165 # The minimum safe angle.
+turret:max                                                      165  # The maximum safe angle.
 
 ###################################################################################################
 
 # OI
 oi:automode                                                     0
 ##TBD ADD more OI buttons##
+
+###################################################################################################
+
+# Turret PID stuff
+turret:follow:kp                                                 0.014084508 #TBD experimentally determine
+turret:follow:ki                                                 0           #TBD experimentally determine
+turret:follow:kd                                                 0.0         #TBD experimentally determine
+turret:follow:kf                                                 0           #TBD experimentally determine
+turret:follow:min                                                -1       
+turret:follow:max                                                1        
+turret:follow:imax                                               0           #TBD experimentally determine

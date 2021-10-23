@@ -15,9 +15,8 @@ public class TurretSubsystem extends MotorEncoderSubsystem {
         super(parent, "turret", false) ;
 
         turret_ = getRobot().getMotorFactory().createMotor("turret", "hw:turret:motor") ;
-        //turr_encoders_ = getRobot().getSettingsParser.get("hw:turret:motor:encoder").get
-        
-        //TBD check in motor factory... need to declare an encoder here? or does factory create the neo encoders default?
+        min_safe_angle_ = getRobot().getSettingsParser().get("turret:min").getDouble() ;
+        max_safe_angle_ = getRobot().getSettingsParser().get("turret:max").getDouble() ;
     }
     
     @Override
@@ -26,13 +25,34 @@ public class TurretSubsystem extends MotorEncoderSubsystem {
     }
     
     public void setTurretPower(double p) throws BadMotorRequestException, MotorRequestFailedException {
-        //TBD constraints on "p"
+        if (p < 0 && getPosition() < getMinSafeAngle()) {
+            p = 0 ;
+        } else if (p > 0 && getPosition() > getMaxSafeAngle()) {
+            p = 0 ;
+        }
+            
         turret_.set(p) ;
     }
     
+    public double getTurretAngle() {
+        return getPosition();
+    }
+    
+    public double getMinSafeAngle() {
+        return min_safe_angle_ ;
+    }
+
+    public double getMaxSafeAngle() {
+        return max_safe_angle_ ;
+    }
+
     @Override 
     public void computeMyState() throws Exception {
         super.computeMyState();
         //anything else?
     }
+
+    private double min_safe_angle_ ;
+    private double max_safe_angle_ ;
+
 }
