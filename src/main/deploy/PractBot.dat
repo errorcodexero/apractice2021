@@ -60,5 +60,3 @@ intake:motor:off:power                                           0.0
 intake:motor:collect:power                                       1.0        #TBD experimentally check this
 intake:motor:eject:power                                         -1.0       #TBD experimentally determine + vs -
 
-
-
