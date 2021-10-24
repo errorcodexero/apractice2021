@@ -23,14 +23,6 @@ public class TurretSubsystem extends MotorEncoderSubsystem {
     public double getTurretVelocity() {
         return getVelocity();
     }
-    // public void setTurretPower(double p) throws BadMotorRequestException, MotorRequestFailedException {
-    //     if (p < 0 && getPosition() < getMinSafeAngle()) {
-    //         p = 0 ;
-    //     } else if (p > 0 && getPosition() > getMaxSafeAngle()) {
-    //         p = 0 ;
-    //     }
-    //     turret_.set(p) ;
-    // }
     
     public double getTurretAngle() {
         return getPosition();

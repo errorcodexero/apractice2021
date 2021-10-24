@@ -8,7 +8,6 @@ import org.xero1425.misc.MissingParameterException;
 
 public class IntakeEjectAction extends MotorPowerAction {
     private IntakeSubsystem sub_;
-    //private MotorPowerAction intake_power_act_;
 
     public IntakeEjectAction(IntakeSubsystem sub) throws BadParameterTypeException, MissingParameterException {
         super(sub, "intake:motor:eject:power");
@@ -26,10 +25,6 @@ public class IntakeEjectAction extends MotorPowerAction {
         //logger.add("power", intake_power_) ;
         logger.endMessage() ;
 
-        // if (!isDone())
-        //     sub_.setAction(intake_power_act_) ;
-        // else
-        //     sub_.setAction(new MotorPowerAction(sub_, 0.0)) ;
     }
 
     @Override
@@ -43,8 +38,6 @@ public class IntakeEjectAction extends MotorPowerAction {
         //logger.add("power", intake_power_) ;
         logger.endMessage() ;
 
-        // if (isDone())
-        //     sub_.setAction(new MotorPowerAction(sub_, 0.0)) ;
     }
 
     @Override
@@ -58,10 +51,5 @@ public class IntakeEjectAction extends MotorPowerAction {
         //logger.add("power", intake_power_) ;
         logger.endMessage() ;
 
-        // try {
-        //     sub_.setAction(new MotorPowerAction(sub_, 0.0)) ;
-        // }
-        // catch(Exception ex) {
-        // }
     }
 }

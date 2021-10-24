@@ -10,16 +10,11 @@ public class IntakeSubsystem extends MotorSubsystem {
 
     public IntakeSubsystem(Subsystem parent) throws Exception {
         super(parent, SubsystemName) ;
-        //intake_ = getRobot().getMotorFactory().createMotor("intake", "hw:intake:motor") ;
-    }
 
-    // public void setIntakePower(double p) throws BadMotorRequestException, MotorRequestFailedException {
-    //     intake_.set(p) ;
-    // }
+    }
 
     @Override
     public void postHWInit() {
-        // setDefaultAction(new MotorEncoderHoldAction(this)) ;
         setDefaultAction(new MotorPowerAction(this, 0.0));
     }
 
