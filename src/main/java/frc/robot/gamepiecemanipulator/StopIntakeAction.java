@@ -1,21 +1,22 @@
 package frc.robot.gamepiecemanipulator;
 
 import org.xero1425.base.actions.Action;
+import org.xero1425.base.motorsubsystem.MotorEncoderGotoAction;
 
 import frc.robot.gamepiecemanipulator.intake.IntakeOffAction;
-import frc.robot.gamepiecemanipulator.turret.TurretTurnAction;
 
 public class StopIntakeAction extends Action {
     
     private GamePieceManipulatorSubsystem sub_ ;
     private IntakeOffAction intake_off_act_ ;
-    private TurretTurnAction turret_turn_act_ ;
+    private MotorEncoderGotoAction turret_turn_act_ ;
 
     public StopIntakeAction(GamePieceManipulatorSubsystem gpm) throws Exception {
         super(gpm.getRobot().getMessageLogger());
 
         intake_off_act_ = new IntakeOffAction(gpm.getIntake());
-        turret_turn_act_ = new TurretTurnAction(gpm.getTurret(), 0.0);
+        turret_turn_act_ = new MotorEncoderGotoAction(sub_.getTurret(), 0.0, true) ;
+
     }
 
     @Override

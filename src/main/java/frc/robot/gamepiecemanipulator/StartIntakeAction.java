@@ -1,9 +1,9 @@
 package frc.robot.gamepiecemanipulator;
 
 import org.xero1425.base.actions.Action;
+import org.xero1425.base.motorsubsystem.MotorEncoderGotoAction;
 
 import frc.robot.gamepiecemanipulator.intake.IntakeCollectAction;
-import frc.robot.gamepiecemanipulator.turret.TurretTurnAction;
 
 public class StartIntakeAction extends Action {
 
@@ -12,7 +12,7 @@ public class StartIntakeAction extends Action {
     //        know about the subsystem.
     private GamePieceManipulatorSubsystem sub_ ;
     private IntakeCollectAction intake_on_act_ ;
-    private TurretTurnAction turret_turn_act_ ;
+    private MotorEncoderGotoAction turret_turn_act_ ;
 
     // Butch: From the email, "the StartIntake action for the GamePieceManipulatorthat takes an angle between -90 and +90 as an angle for the turret"
     //        This is the desired angle for the turret during the intake action, so we need to make it an argument
@@ -30,13 +30,8 @@ public class StartIntakeAction extends Action {
         
         intake_on_act_ = new IntakeCollectAction(gpm.getIntake()) ;
 
-        // Butch: creating a subsystem in an action is creating hardware in an action.  We never
-        //        create hardware in actions.  I think you want some type of turret action here
-        //        and not the subsystem.
-        // turret_ = new TurretSubsystem(gpm);
-
         // Butch: need to create a turret action here that is a TurretTurnAction ...
-        turret_turn_act_ = new TurretTurnAction(gpm.getTurret(), desiredturret) ;
+        turret_turn_act_ = new MotorEncoderGotoAction(sub_.getTurret(), desiredturret, true) ;
     }
 
     @Override
@@ -49,9 +44,6 @@ public class StartIntakeAction extends Action {
         //        you start the rollers on the intake.  What would you do in this method???
         // 
 
-        // if (turret_.getTurretAngle() < 90 || turret_.getTurretAngle() > 90) {
-        //     sub_.getIntake().setAction(intake_on_act_, true); 
-        // }  
     }
 
     @Override
@@ -61,9 +53,6 @@ public class StartIntakeAction extends Action {
         // Butch: since we are assuming we want the turret to get to the right angle before we start the intake
         //        rollers, we need to monitor the turret action and only start the intake action after the turret
         //        action is done.
-
-        // Butch: does this action ever complete?  if so, what are the completion conditions?  When an action completes,
-        //        we need to call setDone() from the run method.
 
         if (sub_.getTurret().getAction().isDone()) {
             sub_.getIntake().setAction(intake_on_act_) ;
