@@ -7,14 +7,6 @@ import org.xero1425.base.motorsubsystem.MotorEncoderSubsystem;
 public class TurretSubsystem extends MotorEncoderSubsystem {
     public static final String SubsystemName = "turret";
 
-    // Butch: You don't need this variable.  The class TurretSubsystem is a MotorEncoderSubsystem
-    //        since you derived from that class.  You are not using it so I think it is just left
-    //        over and you forgot to delete it.
-    // private MotorEncoderSubsystem turret_; 
-
-    // Butch: Lets put all variable definitions at the beginning of the class file.  This seems
-    //        to be the Java convention.  I know I originallyh but them at the end, but then noticed
-    //        that the Java community did it differently.
     private double min_safe_angle_ ;
     private double max_safe_angle_ ;
 

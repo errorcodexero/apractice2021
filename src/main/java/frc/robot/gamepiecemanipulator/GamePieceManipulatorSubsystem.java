@@ -8,6 +8,9 @@ import frc.robot.gamepiecemanipulator.turret.TurretSubsystem;
 
 public class GamePieceManipulatorSubsystem extends Subsystem {
     
+    private IntakeSubsystem intake_ ;
+    private TurretSubsystem turret_ ;
+
     public static final String SubsystemName = "gamepiecemanipulator" ;
     public GamePieceManipulatorSubsystem(Subsystem parent) throws Exception {
         super(parent, SubsystemName) ;
@@ -35,7 +38,4 @@ public class GamePieceManipulatorSubsystem extends Subsystem {
         super.run() ;
     }
 
-    // Butch: move to top of class
-    private IntakeSubsystem intake_ ;
-    private TurretSubsystem turret_ ;
 }

@@ -3,10 +3,16 @@ package frc.robot.gamepiecemanipulator;
 import org.xero1425.base.actions.Action;
 
 import frc.robot.gamepiecemanipulator.intake.IntakeCollectAction;
-import frc.robot.gamepiecemanipulator.turret.TurretSubsystem;
 import frc.robot.gamepiecemanipulator.turret.TurretTurnAction;
 
 public class StartIntakeAction extends Action {
+
+    // Butch: this is a case where you do want to hold onto the subsystem
+    //        since you are derived from the Action class and it does not
+    //        know about the subsystem.
+    private GamePieceManipulatorSubsystem sub_ ;
+    private IntakeCollectAction intake_on_act_ ;
+    private TurretTurnAction turret_turn_act_ ;
 
     // Butch: From the email, "the StartIntake action for the GamePieceManipulatorthat takes an angle between -90 and +90 as an angle for the turret"
     //        This is the desired angle for the turret during the intake action, so we need to make it an argument
@@ -22,7 +28,7 @@ public class StartIntakeAction extends Action {
             throw new Exception("Invalid value, " + Double.toString(desiredturret) + " for StartIntakeAction turrent angle") ;
         }
         
-        intake_on_act_ = new IntakeCollectAction(gpm.getIntake());
+        intake_on_act_ = new IntakeCollectAction(gpm.getIntake()) ;
 
         // Butch: creating a subsystem in an action is creating hardware in an action.  We never
         //        create hardware in actions.  I think you want some type of turret action here
@@ -30,12 +36,14 @@ public class StartIntakeAction extends Action {
         // turret_ = new TurretSubsystem(gpm);
 
         // Butch: need to create a turret action here that is a TurretTurnAction ...
+        turret_turn_act_ = new TurretTurnAction(gpm.getTurret(), desiredturret) ;
     }
 
     @Override
     public void start() throws Exception {
         super.start() ;
 
+        sub_.getTurret().setAction(turret_turn_act_);
         // Butch: so you need to think about the sequencing here.  The description here in my email was not
         //        100 percent precise, but lets assume that you want the turret to get to the desired angle before
         //        you start the rollers on the intake.  What would you do in this method???
@@ -56,6 +64,12 @@ public class StartIntakeAction extends Action {
 
         // Butch: does this action ever complete?  if so, what are the completion conditions?  When an action completes,
         //        we need to call setDone() from the run method.
+
+        if (sub_.getTurret().getAction().isDone()) {
+            sub_.getIntake().setAction(intake_on_act_) ;
+            setDone() ;
+        }
+
     }
 
     @Override
@@ -66,7 +80,10 @@ public class StartIntakeAction extends Action {
             sub_.getIntake().cancelAction();
         }
 
-        // Butch: need the same for the new turret action.
+        if (sub_.getTurret().isBusy()) {
+            sub_.getTurret().cancelAction();
+        }
+
     }
 
     @Override
@@ -75,17 +92,4 @@ public class StartIntakeAction extends Action {
         return prefix(indent) + "StartIntakeAction" ;
     }
 
-    // Butch: this is a case where you do want to hold onto the subsystem
-    //        since you are derived from the Action class and it does not
-    //        know about the subsystem.
-    //
-    // Note also move all class variables to the start of the class
-    private GamePieceManipulatorSubsystem sub_ ;
-    private IntakeCollectAction intake_on_act_ ;
-    private TurretTurnAction turret_turn_act_ ;
-
-    // Butch: creating a subsystem in an action is creating hardware in an action.  We never
-    //        create hardware in actions.  I think you want some type of turret action here
-    //        and not the subsystem.
-    // private TurretSubsystem turret_; 
 }

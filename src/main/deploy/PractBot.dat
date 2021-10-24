@@ -4,6 +4,13 @@
 #
 
 ###################################################################################################
+# Messages
+turret:messages                                                 false
+intake:messages                                                 false
+tankdrive:messages                                              false
+xerorobot:messages                                              false
+
+###################################################################################################
 # driver gamepad
 driver:power:default                                            0.6
 driver:power:max                                                1.0
@@ -88,7 +95,6 @@ turret:follow:imax                                               0          #TBD
 
 
 # Intake Motor Powers
-intake:motor:off:power                                           0.0
 intake:motor:collect:power                                       1.0        #TBD experimentally check this
 intake:motor:eject:power                                         -1.0       #TBD experimentally determine + vs -
 
