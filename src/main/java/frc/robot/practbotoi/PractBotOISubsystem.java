@@ -1,8 +1,6 @@
 package frc.robot.practbotoi; //directory path from "java"
 
-import org.xero1425.base.RobotSubsystem;
 import org.xero1425.base.Subsystem; //import from first or 1425? - from 1425!!!
-import org.xero1425.base.XeroRobot;
 import org.xero1425.base.oi.OISubsystem;
 import org.xero1425.base.tankdrive.TankDriveSubsystem;
 import org.xero1425.misc.BadParameterTypeException;

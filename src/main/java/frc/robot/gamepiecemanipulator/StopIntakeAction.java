@@ -19,6 +19,9 @@ public class StopIntakeAction extends Action {
     public void start() throws Exception {
         super.start() ;
 
+        // Butch: The instructions say set the turret back to zero degrees, so we need to 
+        //        assign the turret action.  We stop 
+
         sub_.getIntake().setAction(intake_off_act_, true); 
     }
 
@@ -26,8 +29,14 @@ public class StopIntakeAction extends Action {
     public void run() throws Exception {
         super.run() ;
         
-        sub_.getIntake().setAction(intake_off_act_); // turret won't move in this case...
-        sub_.getTurret().setAction(turret_act_);
+        // Butch: we do not set the action on the child every robot loop.  We set it once, and if necessary
+        //        We can check the isDone() method of a child method to see if it is complete.
+        //
+        // sub_.getIntake().setAction(intake_off_act_); // turret won't move in this case...
+        // sub_.getTurret().setAction(turret_act_);
+        
+        // Butch: does this action ever complete?  if so, what are the completion conditions?  When an action completes,
+        //        we need to call setDone() from the run method.
     }
 
     @Override

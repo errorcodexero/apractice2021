@@ -35,6 +35,7 @@ public class GamePieceManipulatorSubsystem extends Subsystem {
         super.run() ;
     }
 
+    // Butch: move to top of class
     private IntakeSubsystem intake_ ;
     private TurretSubsystem turret_ ;
 }

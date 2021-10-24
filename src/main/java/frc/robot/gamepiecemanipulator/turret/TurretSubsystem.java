@@ -6,7 +6,17 @@ import org.xero1425.base.motorsubsystem.MotorEncoderSubsystem;
 
 public class TurretSubsystem extends MotorEncoderSubsystem {
     public static final String SubsystemName = "turret";
-    private MotorEncoderSubsystem turret_; 
+
+    // Butch: You don't need this variable.  The class TurretSubsystem is a MotorEncoderSubsystem
+    //        since you derived from that class.  You are not using it so I think it is just left
+    //        over and you forgot to delete it.
+    // private MotorEncoderSubsystem turret_; 
+
+    // Butch: Lets put all variable definitions at the beginning of the class file.  This seems
+    //        to be the Java convention.  I know I originallyh but them at the end, but then noticed
+    //        that the Java community did it differently.
+    private double min_safe_angle_ ;
+    private double max_safe_angle_ ;
 
     public TurretSubsystem(Subsystem parent) throws Exception {
         super(parent, "turret", false) ;
@@ -41,7 +51,26 @@ public class TurretSubsystem extends MotorEncoderSubsystem {
         super.computeMyState();
     }
 
-    private double min_safe_angle_ ;
-    private double max_safe_angle_ ;
+    // Butch: in my physical descriptor of the turret, I said it turns from 165 degrees
+    //        to -165 degrees.  This method is a method in the base class that is called
+    //        just before power is applied to the motors.  In a subsystem we can check
+    //        to be sure we don't let bad things happen.
+    @Override
+    protected double limitPower(double p) {
+        double ret = p ;
 
+        if (p < 0 && getTurretAngle() <= getMinSafeAngle())
+        {
+            // The power is negative, so we are trying to move the turret more
+            // negative, but we are at the safe limit, so shut down the turret.
+            ret = 0 ;
+        }
+        else if (p > 0 && getTurretAngle() >= getMaxSafeAngle())
+        {
+            // The power is positive, so we are trying to move the turret more
+            // positive, but we are at the safe limit, so shut down the turret.
+            ret = 0 ;
+        }
+        return ret ;
+    }
 }
