@@ -23,8 +23,6 @@
             {
                 "navx:model" : "navx",
                 "navx:instance" : "1",
-                "text_provider_model" : "conveyor",
-                "text_provider_instance" : "1",
                 "left:motor:1:index" : 1,
                 "left:motor:1:type" : "talonfx",
                 "left:motor:2:index" : 2,
