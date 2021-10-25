@@ -71,6 +71,8 @@ turret:fire_threshold                                           5.0
 
 # OI
 oi:automode                                                     0
+oi:start_intake_mode                                            1 # TBD figure out what button this is
+oi:stop_intake_mode                                             2 # TBD figure out what button this is
 ##TBD Add more OI buttons##
 
 ###################################################################################################
