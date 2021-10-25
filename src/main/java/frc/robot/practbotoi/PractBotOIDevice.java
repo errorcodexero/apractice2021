@@ -1,6 +1,7 @@
 package frc.robot.practbotoi;
 
 import org.xero1425.base.actions.Action;
+import org.xero1425.base.actions.InvalidActionRequest;
 import org.xero1425.base.actions.SequenceAction;
 import org.xero1425.base.oi.OISubsystem;
 import org.xero1425.base.oi.OIPanel;
@@ -20,10 +21,12 @@ public class PractBotOIDevice extends OIPanel {
 
     private int start_intake_;
     private int stop_intake_;
-    private double desired_turret_ ; //= 0;
+    private double desired_turret_; // = 0;
 
     private Action start_intake_act_;
     private Action stop_intake_act_;
+
+    private GamePieceManipulatorSubsystem gpm = getPractBotSubsystem().getGamePieceManipulator();
 
     public PractBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
@@ -33,20 +36,31 @@ public class PractBotOIDevice extends OIPanel {
     }
 
     public void createStaticActions() throws Exception {
-        GamePieceManipulatorSubsystem gpm = getPractBotSubsystem().getGamePieceManipulator();
         IntakeSubsystem intake = gpm.getIntake();
         TurretSubsystem turret = gpm.getTurret();
 
-        start_intake_act_ = new StartIntakeAction(gpm, desired_turret_) ;
-        stop_intake_act_ = new StopIntakeAction(gpm) ;
-        
+        start_intake_act_ = new StartIntakeAction(gpm, desired_turret_);
+        stop_intake_act_ = new StopIntakeAction(gpm);
+
     }
 
     private PractBotSubsystem getPractBotSubsystem() {
         return (PractBotSubsystem) getSubsystem().getRobot().getRobotSubsystem();
     }
 
-    // Aditi's Q: Also, how to assign the method with the action to the button?
+    @Override
+    public void generateActions(SequenceAction seq) throws InvalidActionRequest {
+        generateStartIntakeAction(seq);
+        generateStopIntakeAction(seq);
+    }
+
+    private void generateStartIntakeAction(SequenceAction seq) throws InvalidActionRequest {
+        seq.addSubActionPair(gpm, start_intake_act_, false) ;
+    }
+
+    private void generateStopIntakeAction(SequenceAction seq) throws InvalidActionRequest {
+        seq.addSubActionPair(gpm, stop_intake_act_, false) ;
+    }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
         int num ;
