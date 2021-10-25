@@ -15,7 +15,8 @@ public class PractBotOISubsystem extends OISubsystem {
     public final static String SubsystemName = "practbotoi";
     private final static String OIHIDIndexName = "hw:driverstation:hid:oi";
 
-    public PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db) {
+    public PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db)
+            throws BadParameterTypeException, MissingParameterException {
         super(parent, SubsystemName, db);
 
         int index ; //usually, this = 2

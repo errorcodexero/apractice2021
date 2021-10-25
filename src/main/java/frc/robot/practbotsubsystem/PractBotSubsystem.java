@@ -30,5 +30,13 @@ public class PractBotSubsystem extends RobotSubsystem {
     public TankDriveSubsystem getTankDrive() {
         return db_ ;
     }
+    
+    public GamePieceManipulatorSubsystem getGamePieceManipulator() {
+        return gpm_ ;
+    }
+
+    public PractBotOISubsystem getOI() {
+        return oi_ ;
+    }
 
 }
