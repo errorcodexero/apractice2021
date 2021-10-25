@@ -46,22 +46,7 @@ public class PractBotOIDevice extends OIPanel {
         return (PractBotSubsystem) getSubsystem().getRobot().getRobotSubsystem();
     }
 
-    // Aditi's Q: should I add the "desired_turret_" within the method below or declare it 
-    //      outside with the other member variables?
-
-    private void startIntakeMode(SequenceAction seq/*, double desired_turret_*/) throws Exception {
-        GamePieceManipulatorSubsystem gpm_sub_ = getPractBotSubsystem().getGamePieceManipulator() ;
-        start_intake_act_ = new StartIntakeAction(gpm_sub_, desired_turret_) ;
-
-        seq.addSubActionPair(gpm_sub_, start_intake_act_, false) ;
-    }
-    
-    private void stopIntakeMode(SequenceAction seq) throws Exception {
-        GamePieceManipulatorSubsystem gpm_sub_ = getPractBotSubsystem().getGamePieceManipulator() ;
-        stop_intake_act_ = new StopIntakeAction(gpm_sub_) ;
-
-        seq.addSubActionPair(gpm_sub_, stop_intake_act_, false) ;
-    }
+    // Aditi's Q: Also, how to assign the method with the action to the button?
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
         int num ;
