@@ -50,16 +50,15 @@ public class PractBotOIDevice extends OIPanel {
 
     @Override
     public void generateActions(SequenceAction seq) throws InvalidActionRequest {
-        generateStartIntakeAction(seq);
-        generateStopIntakeAction(seq);
-    }
+        
+        if (getValue(start_intake_) == 1) {
+            seq.addSubActionPair(gpm, start_intake_act_, false) ;
+        }
 
-    private void generateStartIntakeAction(SequenceAction seq) throws InvalidActionRequest {
-        seq.addSubActionPair(gpm, start_intake_act_, false) ;
-    }
-
-    private void generateStopIntakeAction(SequenceAction seq) throws InvalidActionRequest {
-        seq.addSubActionPair(gpm, stop_intake_act_, false) ;
+        if (getValue(stop_intake_) == 1) {
+            seq.addSubActionPair(gpm, stop_intake_act_, false);
+        }
+        
     }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
