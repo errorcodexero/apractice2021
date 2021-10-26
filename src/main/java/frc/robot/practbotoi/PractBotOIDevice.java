@@ -53,9 +53,7 @@ public class PractBotOIDevice extends OIPanel {
         
         if (getValue(start_intake_) == 1) {
             seq.addSubActionPair(gpm, start_intake_act_, false) ;
-        }
-
-        if (getValue(stop_intake_) == 1) {
+        } else if (getValue(stop_intake_) == 1) {
             seq.addSubActionPair(gpm, stop_intake_act_, false);
         }
         
