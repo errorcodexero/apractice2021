@@ -36,8 +36,6 @@ public class PractBotOIDevice extends OIPanel {
     }
 
     public void createStaticActions() throws Exception {
-        IntakeSubsystem intake = gpm.getIntake();
-        TurretSubsystem turret = gpm.getTurret();
 
         start_intake_act_ = new StartIntakeAction(gpm, desired_turret_);
         stop_intake_act_ = new StopIntakeAction(gpm);
@@ -51,11 +49,11 @@ public class PractBotOIDevice extends OIPanel {
     @Override
     public void generateActions(SequenceAction seq) throws InvalidActionRequest {
         
-        if (getValue(start_intake_) == 1) {
-            seq.addSubActionPair(gpm, start_intake_act_, false) ;
-        } else if (getValue(stop_intake_) == 1) {
+        if (getValue(stop_intake_) == 1) {
             seq.addSubActionPair(gpm, stop_intake_act_, false);
-        }
+        } else if (getValue(start_intake_) == 1) {
+            seq.addSubActionPair(gpm, start_intake_act_, false) ;
+        } 
         
     }
 

@@ -28,7 +28,7 @@ public class PractBot extends XeroRobot {
 
   protected void hardwareInit() throws Exception {
     PractBotSubsystem robotsub = new PractBotSubsystem(this) ;
-    setRobotSubsystem(robotsub);
+    setRobotSubsystem(robotsub) ;
   }
   
   public String getSimulationFileName() {
