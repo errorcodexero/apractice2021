@@ -11,10 +11,7 @@ import org.xero1425.misc.MissingParameterException;
 import org.xero1425.misc.SettingsParser;
 
 import frc.robot.gamepiecemanipulator.GamePieceManipulatorSubsystem;
-import frc.robot.gamepiecemanipulator.StartIntakeAction;
-import frc.robot.gamepiecemanipulator.StopIntakeAction;
-import frc.robot.gamepiecemanipulator.intake.IntakeSubsystem;
-import frc.robot.gamepiecemanipulator.turret.TurretSubsystem;
+
 import frc.robot.practbotsubsystem.PractBotSubsystem;
 
 public class PractBotOIDevice extends OIPanel {
@@ -37,8 +34,7 @@ public class PractBotOIDevice extends OIPanel {
 
     public void createStaticActions() throws Exception {
 
-        start_intake_act_ = new StartIntakeAction(gpm, desired_turret_);
-        stop_intake_act_ = new StopIntakeAction(gpm);
+        //act_name_ = new NameAction(input1, input2);
 
     }
 
