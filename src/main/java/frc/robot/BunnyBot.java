@@ -4,7 +4,7 @@ import org.xero1425.base.XeroRobot;
 import org.xero1425.base.controllers.AutoController;
 import org.xero1425.misc.SimArgs;
 
-import frc.robot.practbotsubsystem.PractBotSubsystem;
+import frc.robot.bunnybotsubsystem.PractBotSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -13,13 +13,13 @@ import frc.robot.practbotsubsystem.PractBotSubsystem;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class PractBot extends XeroRobot {
-  public PractBot() {
+public class BunnyBot extends XeroRobot {
+  public BunnyBot() {
     super(0.02);
   }
 
   public String getName() {
-    return "PractBot";
+    return "BunnyBot";
   }
 
   public AutoController createAutoController() {
@@ -40,8 +40,5 @@ public class PractBot extends XeroRobot {
   }
 
   protected void addRobotSimulationModels() {
-    // ModelFactory factory = SimulationEngine.getInstance().getModelFactory();
-    // factory.registerModel("turret", "TBD");
-    // factory.registerModel("arm", "TBD");
   }
 }

@@ -1,11 +1,11 @@
-package frc.robot.practbotsubsystem; //directory path from "java"
+package frc.robot.bunnybotsubsystem; //directory path from "java"
 
 import org.xero1425.base.RobotSubsystem;
 import org.xero1425.base.XeroRobot;
 import org.xero1425.base.tankdrive.TankDriveSubsystem;
 
+import frc.robot.bunnybotoi.PractBotOISubsystem;
 import frc.robot.gamepiecemanipulator.GamePieceManipulatorSubsystem;
-import frc.robot.practbotoi.PractBotOISubsystem;
 
 public class PractBotSubsystem extends RobotSubsystem {
     public final static String SubsystemName = "practbot" ;

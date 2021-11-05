@@ -1,4 +1,4 @@
-package frc.robot.practbotoi;
+package frc.robot.bunnybotoi;
 
 import org.xero1425.base.actions.Action;
 import org.xero1425.base.actions.InvalidActionRequest;
@@ -10,9 +10,8 @@ import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MissingParameterException;
 import org.xero1425.misc.SettingsParser;
 
+import frc.robot.bunnybotsubsystem.PractBotSubsystem;
 import frc.robot.gamepiecemanipulator.GamePieceManipulatorSubsystem;
-
-import frc.robot.practbotsubsystem.PractBotSubsystem;
 
 public class PractBotOIDevice extends OIPanel {
 

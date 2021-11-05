@@ -36,13 +36,13 @@ tankdrive:width                                                 25 #TBD determin
 tankdrive:scrub                                                 1.0 #TBD experimentally determine
 
 hw:tankdrive:motors:left:1:canid                                1                           # CAN ID 1
-hw:tankdrive:motors:left:1:type                                 "talon_fx"                  # falcon motors
+hw:tankdrive:motors:left:1:type                                 "talon_srx"
 hw:tankdrive:motors:left:2:canid                                2                           # CAN ID 2
-hw:tankdrive:motors:left:2:type                                 "talon_fx"
+hw:tankdrive:motors:left:2:type                                 "talon_srx"
 hw:tankdrive:motors:right:1:canid                               3                           # CAN ID 3
-hw:tankdrive:motors:right:1:type                                "talon_fx"
+hw:tankdrive:motors:right:1:type                                "talon_srx"
 hw:tankdrive:motors:right:2:canid                               4                           # CAN ID 4
-hw:tankdrive:motors:right:2:type                                "talon_fx"
+hw:tankdrive:motors:right:2:type                                "talon_srx"
 hw:tankdrive:motors:right:inverted                              true                        # Invert right motors
 
 # Intake
