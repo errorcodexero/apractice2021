@@ -8,23 +8,25 @@ import org.xero1425.misc.MessageLogger;
 import org.xero1425.misc.MessageType;
 import org.xero1425.misc.MissingParameterException;
 
-public class PractBotOISubsystem extends OISubsystem {
+public class BunnyBotOISubsystem extends OISubsystem {
     
-    private PractBotOIDevice oi_;
+    private BunnyBotOIDevice oi_;
     
-    public final static String SubsystemName = "practbotoi";
-    private final static String OIHIDIndexName = "hw:driverstation:hid:oi";
+    public final static String SubsystemName = "bunnybotoi";
+    private final static String OIHIDIndexName = "oi:index";
 
-    public PractBotOISubsystem(Subsystem parent, TankDriveSubsystem db)
+    public BunnyBotOISubsystem(Subsystem parent, TankDriveSubsystem db)
             throws BadParameterTypeException, MissingParameterException {
         super(parent, SubsystemName, db);
 
-        int index ; //usually, this = 2
+        int index ;
         MessageLogger logger = getRobot().getMessageLogger() ;
 
-        //following from droid
+        //
+        // Add the custom OI for droid to the OI subsystem
+        //
         try {
-            index = getRobot().getSettingsParser().get(OIHIDIndexName).getInteger() ;
+            index = getSettingsValue(OIHIDIndexName).getInteger() ;
         } catch (BadParameterTypeException e) {
             logger.startMessage(MessageType.Error) ;
             logger.add("parameter ").addQuoted(OIHIDIndexName) ;
@@ -37,8 +39,15 @@ public class PractBotOISubsystem extends OISubsystem {
             index = -1 ;            
         }
 
-        oi_ = new PractBotOIDevice(this, "OI", index) ;
-
+        if (index != -1) {
+            try {
+                oi_ = new BunnyBotOIDevice(this, "OI", index) ;
+                addHIDDevice(oi_) ;
+            }
+            catch(Exception ex) {
+                logger.startMessage(MessageType.Error) ;
+                logger.add("OI HID device was not created ").endMessage();
+            }
+        }
     }
-
 }

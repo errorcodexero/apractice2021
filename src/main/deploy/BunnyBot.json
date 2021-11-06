@@ -1,0 +1,73 @@
+{
+    "system" : {
+        "plotting" : true
+    },
+    "subsystems" : {
+        "tankdrive" : {
+            "width" : 30.0,
+            "scrub" : 1.0,
+            "inches_per_tick" : 0.006,
+            "hw" : {
+                "gyro" : "navx",
+                "left" : {
+                    "motors" : {
+                        "1" : {
+                            "type" : "talon_srx",
+                            "canid" : 1
+                        },
+                        "2" : {
+                            "type" : "talon_srx",
+                            "canid" : 2
+                        }                        
+                    },
+                    "encoders" : {
+                        "1" : 1,
+                        "2" : 2
+                    }
+                },
+                "right" : {
+                    "motors" : {
+                        "1" : {
+                            "type" : "talon_srx",
+                            "canid" : 3
+                        },
+                        "2" : {
+                            "type" : "talon_srx",
+                            "canid" : 4
+                        }                        
+                    },
+                    "encoders" : {
+                        "1" : 3,
+                        "2" : 4
+                    },
+                    "invert" : true
+                }
+            }
+        },
+        "bunnybotoi" : {
+            "gamepad" : {
+                "index" : 0,
+                "power" : {
+                    "max" : 1.0,
+                    "default" : 0.6,
+                    "nudge_straight" : 0.2,
+                    "nudge_rotate" : 0.2,
+                    "slowby" : 0.5,
+                    "tolerance" : 0.05
+                },
+                "turn" : {
+                    "max" : 0.8,
+                    "default" : 0.4
+                },
+
+                "zerolevel" : 0.1,
+                "nudge_time" : 0.1
+            },
+            "oi" : {
+                "index" : 2,
+                "gadgets" : {
+                }
+            }
+        } 
+    }
+}
