@@ -7,14 +7,14 @@ import org.xero1425.base.tankdrive.TankDriveSubsystem;
 import frc.robot.bunnybotoi.BunnyBotOISubsystem;
 import frc.robot.gamepiecemanipulator.GamePieceManipulatorSubsystem;
 
-public class PractBotSubsystem extends RobotSubsystem {
+public class BunnyBotSubsystem extends RobotSubsystem {
     public final static String SubsystemName = "bunnybot" ;
     public final static String TankdriveSubsystemName = "tankdrive" ;
     private TankDriveSubsystem db_ ;
     private GamePieceManipulatorSubsystem gpm_ ;
     private BunnyBotOISubsystem oi_;
 
-    public PractBotSubsystem(XeroRobot robot) throws Exception {
+    public BunnyBotSubsystem(XeroRobot robot) throws Exception {
         super(robot, SubsystemName) ;
 
         db_ = new TankDriveSubsystem(this, TankdriveSubsystemName, "tankdrive") ;

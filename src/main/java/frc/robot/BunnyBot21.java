@@ -2,9 +2,12 @@ package frc.robot;
 
 import org.xero1425.base.XeroRobot;
 import org.xero1425.base.controllers.AutoController;
+import org.xero1425.misc.BadParameterTypeException;
+import org.xero1425.misc.MissingParameterException;
 import org.xero1425.misc.SimArgs;
 
-import frc.robot.bunnybotsubsystem.PractBotSubsystem;
+import frc.robot.automodes.BunnyBotAutoController;
+import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -13,8 +16,8 @@ import frc.robot.bunnybotsubsystem.PractBotSubsystem;
  * creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class BunnyBot extends XeroRobot {
-  public BunnyBot() {
+public class BunnyBot21 extends XeroRobot {
+  public BunnyBot21() {
     super(0.02);
   }
 
@@ -22,12 +25,12 @@ public class BunnyBot extends XeroRobot {
     return "BunnyBot";
   }
 
-  public AutoController createAutoController() {
-    return null;
+  public AutoController createAutoController() throws MissingParameterException, BadParameterTypeException {
+    return new BunnyBotAutoController(this);
   }
 
   protected void hardwareInit() throws Exception {
-    PractBotSubsystem robotsub = new PractBotSubsystem(this) ;
+    BunnyBotSubsystem robotsub = new BunnyBotSubsystem(this) ;
     setRobotSubsystem(robotsub) ;
   }
   
