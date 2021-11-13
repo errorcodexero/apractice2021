@@ -1,28 +1,31 @@
 {
     "system" : {
-        "plotting" : true
+        "plotting" : true,
+        "messages" : {
+            "tankdrive" : true
+        }
     },
     "subsystems" : {
         "tankdrive" : {
             "width" : 30.0,
             "scrub" : 1.0,
-            "inches_per_tick" : 0.010836,
+            "inches_per_tick" : 0.01122386942898,
             "follower" : {
                 "left" : {
-                    "ka" : 0.0,
+                    "ka" : 0.0016974308,
                     "kv" : 0.008487154,
-                    "kp" : 0.007,
+                    "kp" : 0.05,
                     "kd" : 0.0
                 },
                 "right" : {
-                    "ka" : 0.0,
+                    "ka" : 0.0016974308,
                     "kv" : 0.008487154,
-                    "kp" : 0.007,
+                    "kp" : 0.05,
                     "kd" : 0.0
                 }
             },
             "angle_correction" : {
-                "kp" : 0.0,
+                "kp" : 0.1,
                 "ki" : 0.0,
                 "kd" : 0.0,
                 "kf" : 0.0,
