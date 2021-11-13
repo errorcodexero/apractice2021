@@ -25,7 +25,7 @@
                 }
             },
             "angle_correction" : {
-                "kp" : 0.1,
+                "kp" : 0.3,
                 "ki" : 0.0,
                 "kd" : 0.0,
                 "kf" : 0.0,
@@ -39,17 +39,16 @@
                     "motors" : {
                         "1" : {
                             "type" : "talon_srx",
-                            "canid" : 1
+                            "canid" : 4
                         },
                         "2" : {
                             "type" : "talon_srx",
-                            "canid" : 2
+                            "canid" : 5
                         },
                         "3" : {
                             "type" : "talon_srx",
-                            "canid" : 3
-                        },                        
-                        "inverted" : true
+                            "canid" : 6
+                        }                        
                     },
                     "encoders" : {
                         "1" : 11,
@@ -60,16 +59,17 @@
                     "motors" : {
                         "1" : {
                             "type" : "talon_srx",
-                            "canid" : 4
+                            "canid" : 1
                         },
                         "2" : {
                             "type" : "talon_srx",
-                            "canid" : 5
+                            "canid" : 2
                         },
                         "3" : {
                             "type" : "talon_srx",
-                            "canid" : 6
-                        }      
+                            "canid" : 3
+                        },
+                        "inverted" : true                        
                     },
                     "encoders" : {
                         "1" : 13,
@@ -110,6 +110,6 @@
         "power" : 0.9,
         "duration" : 5.0,
         "distance" : 0.0,
-        "name" : "Test_Straight"
+        "name" : "Test_Curved"
     }
 }
