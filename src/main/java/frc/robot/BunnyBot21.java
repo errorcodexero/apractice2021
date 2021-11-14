@@ -39,7 +39,7 @@ public class BunnyBot21 extends XeroRobot {
     if (ret != null)
       return ret;
 
-    return "nop";
+    return "testmode";
   }
 
   protected void addRobotSimulationModels() {
