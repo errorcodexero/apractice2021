@@ -7,7 +7,7 @@ import org.xero1425.base.motorsubsystem.MotorSubsystem;
 public class ChuteSubsystem extends MotorSubsystem {
     public static final String SubsystemName = "chute";
 
-    public ChuteSubsystem(Subsystem parent) throws Exception{
+    public ChuteSubsystem(Subsystem parent) throws Exception {
         super(parent, SubsystemName);
         
     }
