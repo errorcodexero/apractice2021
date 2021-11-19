@@ -23,5 +23,3 @@ public class IntakeSubsystem extends MotorSubsystem {
     }
 }
 
-
-//Note: we can use "motorpoweractions"; don't need actual actions for the subsystem.
