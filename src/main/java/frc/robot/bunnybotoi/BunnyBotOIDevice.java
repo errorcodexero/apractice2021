@@ -20,12 +20,12 @@ import frc.robot.intake.IntakeSubsystem;
 public class BunnyBotOIDevice extends OIPanel {
 
     private int intake_on_ ;
-    private int intake_off_ ;
+    //private int intake_off_ ;
 
     private int gpm_deposit_ ;
     private int gpm_stop_ ;
 
-    private int eject_false_;
+    //private int eject_false_;
     private int eject_true_ ;
 
     private Action intake_on_action_ ;
@@ -67,7 +67,7 @@ public class BunnyBotOIDevice extends OIPanel {
         //TODO: organize the if statements w/ elses
         
         //off is always off, despite what the eject mode is in
-        if (getValue(gpm_stop_) == 1) {
+        if (getValue(gpm_deposit_) == 0) {
             seq.addSubActionPair(gpm, gpm_stop_action_, false);
         }
         if (getValue(intake_on_) == 0) {
