@@ -34,9 +34,7 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action gpm_stop_action_ ; 
     private Action gpm_eject_action_ ;
 
-    private GamePieceManipulatorSubsystem gpm = getBunnyBotSubsystem().getGamePieceManipulator();
-    private IntakeSubsystem intake = getBunnyBotSubsystem().getIntake();
-
+    
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
         super(sub, name, index);
@@ -45,6 +43,9 @@ public class BunnyBotOIDevice extends OIPanel {
     }
 
     public void createStaticActions() throws Exception {
+
+        GamePieceManipulatorSubsystem gpm = getBunnyBotSubsystem().getGamePieceManipulator() ;
+        IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
         gpm_deposit_action_ = new DepositAction(gpm) ;
         gpm_stop_action_ = new StopAction(gpm) ;
@@ -61,6 +62,9 @@ public class BunnyBotOIDevice extends OIPanel {
 
     @Override
     public void generateActions(SequenceAction seq) throws InvalidActionRequest {
+
+        GamePieceManipulatorSubsystem gpm = getBunnyBotSubsystem().getGamePieceManipulator() ;
+        IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
         //off is always off, despite what the eject mode is in
         if (getValue(gpm_stop_) == 1) {
