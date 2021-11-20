@@ -12,7 +12,10 @@ public class StopAction extends Action {
     public StopAction(GamePieceManipulatorSubsystem gpm) throws Exception {
         super(gpm.getRobot().getMessageLogger());
 
+        //conveyor off action: applys 0 power to conveyor motors
         conveyor_off_action_ = new MotorPowerAction(sub_.getConveyor(), 0.0);
+
+        //chute off action: applys 0 power to chute motors
         chute_off_action_ = new MotorPowerAction(sub_.getChute(), 0.0);
 
     }

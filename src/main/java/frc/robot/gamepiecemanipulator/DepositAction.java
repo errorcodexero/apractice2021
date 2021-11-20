@@ -6,16 +6,18 @@ import org.xero1425.base.motorsubsystem.MotorPowerAction;
 public class DepositAction extends Action {
 
     private GamePieceManipulatorSubsystem sub_ ;
-    private MotorPowerAction conveyor_on_action_ ;
+    private MotorPowerAction conveyor_on_action_ ; 
     private MotorPowerAction chute_on_action_ ;
 
     public DepositAction(GamePieceManipulatorSubsystem gpm) throws Exception {
         super(gpm.getRobot().getMessageLogger());
 
+        //conveyor on action: applys an "on" power to conveyor motors in order to eject the wiffle balls into chute
         conveyor_on_action_ = new MotorPowerAction(sub_.getConveyor(), "conveyor:motor:on:power");
+        
+        //chute on action: applys an "on" power to chute motors in order to eject the wiffle balls into tote
         chute_on_action_ = new MotorPowerAction(sub_.getChute(), "chute:motor:on:power");
-        //actions_name_ = new SomeTypeOfAction(gpm.getSubsystemNameHere());
-
+    
     }
 
     @Override
