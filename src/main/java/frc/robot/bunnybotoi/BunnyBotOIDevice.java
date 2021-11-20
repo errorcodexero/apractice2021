@@ -7,8 +7,6 @@ import org.xero1425.base.oi.OIPanel;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MissingParameterException;
 
-import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
-
 public class BunnyBotOIDevice extends OIPanel {
 
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)

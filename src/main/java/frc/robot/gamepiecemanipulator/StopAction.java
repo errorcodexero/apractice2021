@@ -3,17 +3,17 @@ package frc.robot.gamepiecemanipulator;
 import org.xero1425.base.actions.Action;
 import org.xero1425.base.motorsubsystem.MotorPowerAction;
 
-import frc.robot.gamepiecemanipulator.conveyor.ConveyorSubsystem;
-
 public class StopAction extends Action {
 
     private GamePieceManipulatorSubsystem sub_ ;
-    //private MotorPowerAction conveyor_off_action_ ;
+    private MotorPowerAction conveyor_off_action_ ;
+    private MotorPowerAction chute_off_action_ ;
 
     public StopAction(GamePieceManipulatorSubsystem gpm) throws Exception {
         super(gpm.getRobot().getMessageLogger());
 
-        //actions_name_ = new SomeTypeOfAction(gpm.getSubsystemNameHere());
+        conveyor_off_action_ = new MotorPowerAction(sub_.getConveyor(), 0.0);
+        chute_off_action_ = new MotorPowerAction(sub_.getChute(), 0.0);
 
     }
 
@@ -21,14 +21,18 @@ public class StopAction extends Action {
     public void start() throws Exception {
         super.start() ;
     
-        //TODO: add stuff here
+        sub_.getConveyor().setAction(conveyor_off_action_, true); 
+        sub_.getChute().setAction(chute_off_action_, true);
+
     }
 
     @Override
     public void run() throws Exception {
         super.run() ;
 
-       //TODO: add stuff here
+        if(sub_.getConveyor().getAction().isDone() && sub_.getChute().getAction().isDone()) {
+            setDone() ;
+        }
 
     }
 
@@ -36,7 +40,13 @@ public class StopAction extends Action {
     public void cancel() {
         super.cancel() ;
 
-        //TODO: add stuff here
+        if (sub_.getConveyor().isBusy()) {
+            sub_.getConveyor().cancelAction() ;
+        }
+
+        if (sub_.getChute().isBusy()) {
+            sub_.getChute().cancelAction() ;
+        }
 
     }
 

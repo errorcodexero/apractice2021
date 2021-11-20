@@ -4,10 +4,10 @@ import org.xero1425.base.motorsubsystem.MotorPowerAction;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MissingParameterException;
 
-public class ChuteCollectAction extends MotorPowerAction {
+public class ChuteOnAction extends MotorPowerAction {
 
-    public ChuteCollectAction(ChuteSubsystem sub) throws BadParameterTypeException, MissingParameterException {
-        super(sub, "chute:motor:collect:power");
+    public ChuteOnAction(ChuteSubsystem sub) throws BadParameterTypeException, MissingParameterException {
+        super(sub, "chute:motor:on:power");
     }
 
     @Override
