@@ -51,9 +51,9 @@ public class BunnyBotOIDevice extends OIPanel {
         gpm_stop_action_ = new StopAction(gpm) ;
         gpm_eject_action_ = new EjectAction(gpm) ;
 
-        intake_on_action_ = new MotorPowerAction(intake, "intake:motor:on:power") ;
+        intake_on_action_ = new MotorPowerAction(intake, "motor:on:power") ;
         intake_off_action_ = new MotorPowerAction(intake, 0.0) ;
-        intake_eject_action_ = new MotorPowerAction(intake, "intake:motor:eject:power") ;
+        intake_eject_action_ = new MotorPowerAction(intake, "motor:eject:power") ;
     }
 
     private BunnyBotSubsystem getBunnyBotSubsystem() {
@@ -101,20 +101,20 @@ public class BunnyBotOIDevice extends OIPanel {
        
     ///intake on/off switch
        
-        num = getSubsystem().getSettingsValue("intake_on_mode").getInteger() ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:intake_on_mode").getInteger() ;
         intake_on_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
         
     ///gpm (conveyor + chute) deploy/stop buttons
 
-        num = getSubsystem().getSettingsValue("gpm_deploy_mode").getInteger() ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:gpm_deploy_mode").getInteger() ;
         gpm_deposit_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
 
-        num = getSubsystem().getSettingsValue("gpm_stop_mode").getInteger() ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:gpm_stop_mode").getInteger() ;
         gpm_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
 
     ///"eject mode" switch - what intake/gpm does if it's in eject mode
 
-        num = getSubsystem().getSettingsValue("eject_true").getInteger() ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:eject_true").getInteger() ;
         eject_true_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
 
     }

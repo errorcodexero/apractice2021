@@ -5,6 +5,16 @@
             "actions" : true,
             "tankdrive" : true,
             "pathfollowing" : true
+        },
+        "verbose" : {
+            "bunnybot" : true,
+            "alarms" : false,
+            "tankdrive" : false,
+            "gamepiecemanipulator" : false,
+            "conveyor" : false,
+            "chute" : false,
+            "intake" : false,
+            "bunnybotoi" : false
         }
     },
     "subsystems" : {
@@ -95,13 +105,16 @@
                     "max" : 0.8,
                     "default" : 0.4
                 },
-
                 "zerolevel" : 0.1,
                 "nudge_time" : 0.1
             },
             "oi" : {
                 "index" : 2,
                 "gadgets" : {
+                    "intake_on_mode" : 10, 
+                    "gpm_deploy_mode" : 5,
+                    "gpm_stop_mode" : 5,
+                    "eject_true" : 11
                 }
             }
         },
@@ -119,10 +132,8 @@
             },
             "hw" : {
                 "motors" : {
-                    "7" : {
-                        "type" : "talon_srx",
-                        "canid" : 7
-                    }
+                    "type" : "talon_srx",
+                    "canid" : 7
                 }
             }
         },
@@ -140,10 +151,8 @@
             },
             "hw" : {
                 "motors" : {
-                    "8" : {
-                        "type" : "talon_srx",
-                        "canid" : 8
-                    }
+                    "type" : "talon_srx",
+                    "canid" : 8
                 }
             }
         },
@@ -161,18 +170,10 @@
             },
             "hw" : {
                 "motors" : {
-                    "9" : {
-                        "type" : "talon_srx",
-                        "canid" : 9
-                    }
+                    "type" : "talon_srx",
+                    "canid" : 9
                 }
             }
-        },
-        "oi" : {
-            "intake_on_mode" : 10, 
-            "gpm_deploy_mode" : 5,
-            "gpm_stop_mode" : 5,
-            "eject_true" : 11            
         }
     },
     "testmode" : {

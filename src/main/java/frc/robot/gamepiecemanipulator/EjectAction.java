@@ -10,13 +10,15 @@ public class EjectAction extends Action {
     private MotorPowerAction chute_eject_action_ ;
 
     public EjectAction(GamePieceManipulatorSubsystem gpm) throws Exception {
-        super(gpm.getRobot().getMessageLogger());
+        super(gpm.getRobot().getMessageLogger()) ;
 
+        sub_ = gpm;
+        
         //conveyor eject action: applys power to run conveyor motors backwards
-        conveyor_eject_action_ = new MotorPowerAction(sub_.getConveyor(), "conveyor:motor:eject:power");
+        conveyor_eject_action_ = new MotorPowerAction(sub_.getConveyor(), "motor:eject:power") ;
 
         //chute eject action: applys power to run chute motors backwards
-        chute_eject_action_ = new MotorPowerAction(sub_.getChute(), "conveyor:motor:eject:power");
+        chute_eject_action_ = new MotorPowerAction(sub_.getChute(), "motor:eject:power") ;
 
     }
 

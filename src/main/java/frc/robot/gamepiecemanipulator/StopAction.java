@@ -10,13 +10,15 @@ public class StopAction extends Action {
     private MotorPowerAction chute_off_action_ ;
 
     public StopAction(GamePieceManipulatorSubsystem gpm) throws Exception {
-        super(gpm.getRobot().getMessageLogger());
+        super(gpm.getRobot().getMessageLogger()) ;
+
+        sub_ = gpm;
 
         //conveyor off action: applys 0 power to conveyor motors
-        conveyor_off_action_ = new MotorPowerAction(sub_.getConveyor(), 0.0);
+        conveyor_off_action_ = new MotorPowerAction(sub_.getConveyor(), 0.0) ;
 
         //chute off action: applys 0 power to chute motors
-        chute_off_action_ = new MotorPowerAction(sub_.getChute(), 0.0);
+        chute_off_action_ = new MotorPowerAction(sub_.getChute(), 0.0) ;
 
     }
 

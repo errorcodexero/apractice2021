@@ -10,13 +10,15 @@ public class DepositAction extends Action {
     private MotorPowerAction chute_on_action_ ;
 
     public DepositAction(GamePieceManipulatorSubsystem gpm) throws Exception {
-        super(gpm.getRobot().getMessageLogger());
+        super(gpm.getRobot().getMessageLogger()) ;
+        
+        sub_ = gpm;
 
         //conveyor on action: applys an "on" power to conveyor motors in order to eject the wiffle balls into chute
-        conveyor_on_action_ = new MotorPowerAction(sub_.getConveyor(), "conveyor:motor:on:power");
+        conveyor_on_action_ = new MotorPowerAction(sub_.getConveyor(), "motor:on:power") ;
         
         //chute on action: applys an "on" power to chute motors in order to eject the wiffle balls into tote
-        chute_on_action_ = new MotorPowerAction(sub_.getChute(), "chute:motor:on:power");
+        chute_on_action_ = new MotorPowerAction(sub_.getChute(), "motor:on:power") ;
     
     }
 
