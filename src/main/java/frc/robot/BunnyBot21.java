@@ -5,6 +5,8 @@ import org.xero1425.base.controllers.AutoController;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MissingParameterException;
 import org.xero1425.misc.SimArgs;
+import org.xero1425.simulator.engine.ModelFactory;
+import org.xero1425.simulator.engine.SimulationEngine;
 
 import frc.robot.automodes.BunnyBotAutoController;
 import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
@@ -39,9 +41,11 @@ public class BunnyBot21 extends XeroRobot {
     if (ret != null)
       return ret;
 
-    return "testmode";
+    return "teleop";
   }
 
   protected void addRobotSimulationModels() {
+    ModelFactory factory = SimulationEngine.getInstance().getModelFactory() ;
+    factory.registerModel("bunnybotoi", "frc.model.BunnyBotOIModel");    
   }
 }

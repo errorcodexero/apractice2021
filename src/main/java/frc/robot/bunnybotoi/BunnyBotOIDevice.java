@@ -34,12 +34,15 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action gpm_stop_action_ ; 
     private Action gpm_eject_action_ ;
 
+    private boolean eject_mode_ ;
+
     
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
         super(sub, name, index);
 
         initializeGadgets();
+        eject_mode_ = false ;
     }
 
     public void createStaticActions() throws Exception {
@@ -70,30 +73,33 @@ public class BunnyBotOIDevice extends OIPanel {
         if (getValue(gpm_stop_) == 1) {
             seq.addSubActionPair(gpm, gpm_stop_action_, false);
         }
-        if (getValue(intake_on_) == 0) {
-            seq.addSubActionPair(intake, intake_off_action_, false);
-        }
-        
-        //if it's not in eject mode, when button/switch is pressed, it goes into "intake/deposit" mode
-        else if (getValue(eject_true_) == 0) {
-            if (getValue(gpm_deposit_) == 1) {
-                seq.addSubActionPair(gpm, gpm_deposit_action_, false);
-            } 
-            if (getValue(intake_on_) == 1) {
-                seq.addSubActionPair(gpm, intake_on_action_, false);
-            } 
+        else if (getValue(gpm_deposit_) == 1) {
+            if (getValue(eject_true_) == 0) {
+                if (eject_mode_ || !gpm.getConveyor().isRunning())
+                    seq.addSubActionPair(gpm, gpm_deposit_action_, false);
+            }
+            else {
+                if (!eject_mode_ || !gpm.getConveyor().isRunning())
+                    seq.addSubActionPair(gpm, gpm_eject_action_, false);
+            }
         }
 
-        //if it's in eject mode, when button/switch is pressed, it goes into "eject" mode
-        else if (getValue(eject_true_) == 1) {
-            if (getValue(gpm_deposit_) == 1) {
-                seq.addSubActionPair(gpm, gpm_eject_action_, false);
-            } 
-            if (getValue(intake_on_) == 1) {
-                seq.addSubActionPair(gpm, intake_eject_action_, false);
-            } 
+        if (getValue(intake_on_) == 0) {
+            if (intake.isRunning())
+                seq.addSubActionPair(intake, intake_off_action_, false);
         }
-        
+        else {
+            if (getValue(eject_true_) == 0) {
+                if (eject_mode_ || !intake.isRunning())
+                    seq.addSubActionPair(intake, intake_on_action_, false);
+            }
+            else {
+                if (!eject_mode_ || !intake.isRunning())                
+                    seq.addSubActionPair(intake, intake_eject_action_, false);
+            }
+        }
+
+        eject_mode_ = getValue(eject_true_) == 1 ;
     }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {

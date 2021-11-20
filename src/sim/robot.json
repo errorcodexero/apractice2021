@@ -53,6 +53,19 @@
                 "povs" : 1,
                 "create_early" : true                
             }
-        }
+        },
+        {
+            "model" : "bunnybotoi",
+            "instance" : "1",
+            "props" : {
+                "index" : 2,
+                "xbox" : false,
+                "name" : "Error Code Xero Custom OI",
+                "axes" : 8,
+                "buttons" : 16,
+                "povs" : 1,
+                "create_early" : true                
+            }
+        }        
     ]
 }

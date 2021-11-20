@@ -3,8 +3,8 @@
         "plotting" : true,
         "messages" : {
             "actions" : true,
-            "tankdrive" : true,
-            "pathfollowing" : true
+            "tankdrive" : false,
+            "pathfollowing" : false
         },
         "verbose" : {
             "bunnybot" : true,
