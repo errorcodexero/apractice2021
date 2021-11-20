@@ -22,12 +22,10 @@ public class GamePieceManipulatorSubsystem extends Subsystem {
 
     }
 
-        
     public ConveyorSubsystem getConveyor() {
         return conveyor_ ;
     }
 
-    
     public ChuteSubsystem getChute() {
         return chute_ ;
     }

@@ -104,6 +104,45 @@
                 "gadgets" : {
                 }
             }
+        },
+        "intake" : {
+            "motor" : {
+                "on" : {
+                    "power" : 1.0
+                },
+                "off" : {
+                    "power" : 0.0
+                },
+                "eject" : {
+                    "power" : -1.0
+                }
+            }
+        },
+        "conveyor" : {
+            "motor" : {
+                "on" : {
+                    "power" : 1.0
+                },
+                "off" : {
+                    "power" : 0.0
+                },
+                "eject" : {
+                    "power" : -1.0
+                }
+            }
+        },
+        "chute" : {
+            "motor" : {
+                "on" : {
+                    "power" : 1.0
+                },
+                "off" : {
+                    "power" : 0.0
+                },
+                "eject" : {
+                    "power" : -1.0
+                }
+            }
         } 
     },
     "testmode" : {

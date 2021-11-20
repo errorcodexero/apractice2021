@@ -21,5 +21,6 @@ public class ChuteSubsystem extends MotorSubsystem {
     public void computeMyState() throws Exception {
         super.computeMyState();
     }
+    
 }
 

@@ -21,5 +21,6 @@ public class ConveyorSubsystem extends MotorSubsystem {
     public void computeMyState() throws Exception {
         super.computeMyState();
     }
+    
 }
 
