@@ -35,7 +35,9 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action gpm_eject_action_ ;
 
     private boolean eject_mode_ ;
-
+    private boolean prev_eject_mode_ ;
+    private boolean intake_on_mode_ ;
+    private boolean cc_on_mode_ ;
     
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
@@ -43,6 +45,9 @@ public class BunnyBotOIDevice extends OIPanel {
 
         initializeGadgets();
         eject_mode_ = false ;
+        prev_eject_mode_ = false ;
+        intake_on_mode_ = false ;
+        cc_on_mode_ = false ;
     }
 
     public void createStaticActions() throws Exception {
@@ -69,37 +74,64 @@ public class BunnyBotOIDevice extends OIPanel {
         GamePieceManipulatorSubsystem gpm = getBunnyBotSubsystem().getGamePieceManipulator() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        //off is always off, despite what the eject mode is in
+        //if c/c button is "up" then set power to off
         if (getValue(gpm_stop_) == 1) {
-            seq.addSubActionPair(gpm, gpm_stop_action_, false);
+            seq.addSubActionPair(gpm, gpm_stop_action_, false) ;
+            cc_on_mode_ = false;
         }
+        //if c/c button is pressed, run c/c 
+        // - depending on which way eject switch is positioned, it applys +/- power
         else if (getValue(gpm_deposit_) == 1) {
+            cc_on_mode_ = true;
             if (getValue(eject_true_) == 0) {
                 if (eject_mode_ || !gpm.getConveyor().isRunning())
-                    seq.addSubActionPair(gpm, gpm_deposit_action_, false);
+                    seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
             }
             else {
                 if (!eject_mode_ || !gpm.getConveyor().isRunning())
-                    seq.addSubActionPair(gpm, gpm_eject_action_, false);
+                    seq.addSubActionPair(gpm, gpm_eject_action_, false) ;
             }
         }
-
+        //if intake switch is up; set off
         if (getValue(intake_on_) == 0) {
+            intake_on_mode_ = false;
             if (intake.isRunning())
-                seq.addSubActionPair(intake, intake_off_action_, false);
+                seq.addSubActionPair(intake, intake_off_action_, false) ;
         }
+        //if intake button is pressed, run intake
+        // - depending on which way eject switch is positioned, it applys +/- power
         else {
+            intake_on_mode_ = true;
             if (getValue(eject_true_) == 0) {
                 if (eject_mode_ || !intake.isRunning())
-                    seq.addSubActionPair(intake, intake_on_action_, false);
+                    seq.addSubActionPair(intake, intake_on_action_, false) ;
             }
             else {
                 if (!eject_mode_ || !intake.isRunning())                
-                    seq.addSubActionPair(intake, intake_eject_action_, false);
+                    seq.addSubActionPair(intake, intake_eject_action_, false) ;
             }
         }
 
-        eject_mode_ = getValue(eject_true_) == 1 ;
+        //Logic problem: if eject switch flips when "everything else" is on, "everything else" doesn't 
+        //   switch from + to - power (or vice versa...)
+        
+        //if eject mode has changed but cc/intake modes are "on"
+        // -> it re-checks and applys the new sign of power
+        // *attempts to fix above logic problem, but following logic doesn't work rn...
+        if (prev_eject_mode_ != eject_mode_ && (intake_on_mode_ == true && cc_on_mode_ == true)) {
+            if (eject_mode_ == false) {
+                seq.addSubActionPair(intake, intake_on_action_, false) ;
+                seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
+            }
+            else if (eject_mode_ == true) {
+                seq.addSubActionPair(intake, intake_eject_action_, false) ;
+                seq.addSubActionPair(gpm, gpm_eject_action_, false) ;
+            }
+        }
+
+        prev_eject_mode_ = eject_mode_ ;
+        eject_mode_ = (getValue(eject_true_) == 1) ;
+
     }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
