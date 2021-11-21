@@ -119,7 +119,7 @@ public class BunnyBotOIDevice extends OIPanel {
             //
             // The intake switch is on, so turn on the intake if it is not running.  The direction will be determined
             // by the eject switch.  We change the intake, if it is currently not running, or if the eject state is
-            // differant than the previous eject state.
+            // different than the previous eject state.
             //
             if (!intake.isRunning() || eject_mode != prev_eject_mode_) {
                 if (eject_mode != prev_eject_mode_)
