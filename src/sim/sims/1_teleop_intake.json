@@ -13,7 +13,7 @@
                         "start" : 1.0,
                         "autonomous" : 0.0,
                         "between" : 0.0,
-                        "teleop" : 15.0,
+                        "teleop" : 5.0,
                         "fms": false
                     }
                 }
@@ -28,9 +28,30 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting Eject to false",
-                        "button11" : false
+                        "comment" : "Setting the Intake On Button to true",
+                        "button10" : true
                     }
+                }
+            ]
+        },
+        {
+            "time" : 3.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 1.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 0.0
                 }
             ]
         },
@@ -43,56 +64,32 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the Intake On Button to true",
-                        "button10" : true
-                    }
-                }
-            ]
-        },
-        {
-            "time" : 5.0,
-            "events":
-            [
-                {
-                    "model" : "bunnybotoi",
-                    "instance" : "1", 
-                    "values" : 
-                    {
-                        "comment" : "Setting eject to true; intake should reverse power sign after this",
-                        "button11" : false
-                    }
-                }
-            ]
-        },
-        {
-            "time" : 7.0,
-            "events":
-            [
-                {
-                    "model" : "bunnybotoi",
-                    "instance" : "1", 
-                    "values" : 
-                    {
-                        "comment" : "Setting eject to false",
-                        "button11" : false
-                    }
-                }
-            ]
-        },
-        {
-            "time" : 8.0,
-            "events":
-            [
-                {
-                    "model" : "bunnybotoi",
-                    "instance" : "1", 
-                    "values" : 
-                    {
-                        "comment" : "set Intake on button to false",
+                        "comment" : "Setting the Intake On Button to false",
                         "button10" : false
                     }
                 }
             ]
-        }
+        },
+        {
+            "time" : 4.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 0.0
+                }                
+            ]
+        } 
     ]
 }

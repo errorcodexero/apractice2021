@@ -41,7 +41,7 @@ public class BunnyBot21 extends XeroRobot {
     if (ret != null)
       return ret;
 
-    return "5ejectintakeeject"; //change here to run which simulation file you'd like :)
+    return "1intake"; //change here to run which simulation file you'd like :)
   }
 
   protected void addRobotSimulationModels() {

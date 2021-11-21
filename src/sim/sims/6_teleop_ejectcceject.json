@@ -1,0 +1,203 @@
+{
+    "stimulus" :
+    [
+        {
+            "time" : 0.0,
+            "events" :
+            [
+                {
+                    "model" : "fms",
+                    "instance" : "1",
+                    "values" :
+                    {
+                        "start" : 1.0,
+                        "autonomous" : 0.0,
+                        "between" : 0.0,
+                        "teleop" : 10.0,
+                        "fms": false
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 3.0,
+            "events":
+            [
+                {
+                    "model" : "bunnybotoi",
+                    "instance" : "1", 
+                    "values" : 
+                    {
+                        "comment" : "Setting Eject to false",
+                        "button11" : false
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 3.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 0.0
+                }
+            ]
+        },          
+        {
+            "time" : 4.0,
+            "events":
+            [
+                {
+                    "model" : "bunnybotoi",
+                    "instance" : "1", 
+                    "values" : 
+                    {
+                        "comment" : "Setting the c/c On Button to true",
+                        "button5" : true
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 4.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 1.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 1.0
+                }
+            ]
+        },          
+        {
+            "time" : 5.0,
+            "events":
+            [
+                {
+                    "model" : "bunnybotoi",
+                    "instance" : "1", 
+                    "values" : 
+                    {
+                        "comment" : "Setting eject to true; c/c should reverse power sign after this",
+                        "button11" : false
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 5.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : -1.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : -1.0
+                }
+            ]
+        },          
+        {
+            "time" : 6.0,
+            "events":
+            [
+                {
+                    "model" : "bunnybotoi",
+                    "instance" : "1", 
+                    "values" : 
+                    {
+                        "comment" : "Setting eject to false",
+                        "button11" : false
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 6.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 1.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 1.0
+                }
+            ]
+        },        
+        {
+            "time" : 7.0,
+            "events":
+            [
+                {
+                    "model" : "bunnybotoi",
+                    "instance" : "1", 
+                    "values" : 
+                    {
+                        "comment" : "set c/c on button to false",
+                        "button5" : false
+                    }
+                }
+            ]
+        },
+        {
+            "time" : 7.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 0.0
+                }
+            ]
+        }
+    ]
+}

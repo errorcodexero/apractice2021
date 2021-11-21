@@ -13,7 +13,7 @@
                         "start" : 1.0,
                         "autonomous" : 0.0,
                         "between" : 0.0,
-                        "teleop" : 10.0,
+                        "teleop" : 5.0,
                         "fms": false
                     }
                 }
@@ -35,6 +35,27 @@
             ]
         },
         {
+            "time" : 3.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 1.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 1.0
+                }
+            ]
+        },
+        {
             "time" : 4.0,
             "events":
             [
@@ -46,6 +67,27 @@
                         "comment" : "Setting the C/C On Button to false",
                         "button5" : false
                     }
+                }
+            ]
+        },
+        {
+            "time" : 4.1,
+            "asserts" : 
+            [
+                {
+                    "subsystem" : "intake",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "conveyor",
+                    "property" : "power",
+                    "value" : 0.0
+                },
+                {
+                    "subsystem" : "chute",
+                    "property" : "power",
+                    "value" : 0.0
                 }
             ]
         }
