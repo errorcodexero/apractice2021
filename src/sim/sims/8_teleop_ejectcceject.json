@@ -101,7 +101,7 @@
                     "values" : 
                     {
                         "comment" : "Setting eject to true; c/c should reverse power sign after this",
-                        "button11" : false
+                        "button11" : true
                     }
                 }
             ]

@@ -34,20 +34,14 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action gpm_stop_action_ ; 
     private Action gpm_eject_action_ ;
 
-    private boolean eject_mode_ ;
     private boolean prev_eject_mode_ ;
-    private boolean intake_on_mode_ ;
-    private boolean cc_on_mode_ ;
     
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
         super(sub, name, index);
 
         initializeGadgets();
-        eject_mode_ = false ;
         prev_eject_mode_ = false ;
-        intake_on_mode_ = false ;
-        cc_on_mode_ = false ;
     }
 
     public void createStaticActions() throws Exception {
@@ -70,68 +64,97 @@ public class BunnyBotOIDevice extends OIPanel {
 
     @Override
     public void generateActions(SequenceAction seq) throws InvalidActionRequest {
+        boolean gpm_set = false ;
+        int ejvalue = getValue(eject_true_) ;
+        boolean eject_mode = (ejvalue == 1) ;
+        double now = getSubsystem().getRobot().getTime() ;
+
+        //
+        // So, the key here is that the gpm_stop_ and gpm_deposit_ buttons are single
+        // events and will not assert their value when triggered except for a single
+        // event loop.  The intake_on_ and the eject_true_ are level buttons and will
+        // assert their values every event loop.  The logic below must do the right
+        // things under these conditions. 
+        //
 
         GamePieceManipulatorSubsystem gpm = getBunnyBotSubsystem().getGamePieceManipulator() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        //if c/c button is "up" then set power to off
         if (getValue(gpm_stop_) == 1) {
+            //
+            // So, first priority, if the gpm_deposit_ button was released, we stop the conveyor
+            // and the chute.  Eject does not matter since there is no direction to stopped
+            //            
             seq.addSubActionPair(gpm, gpm_stop_action_, false) ;
-            cc_on_mode_ = false;
+            gpm_set = true ;
         }
-        //if c/c button is pressed, run c/c 
-        // - depending on which way eject switch is positioned, it applys +/- power
         else if (getValue(gpm_deposit_) == 1) {
-            cc_on_mode_ = true;
-            if (getValue(eject_true_) == 0) {
-                if (eject_mode_ || !gpm.getConveyor().isRunning())
-                    seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
+            //
+            // If we are here, the gpm_deposit_ button was pressed.  The eject button will
+            // determine the direction of the conveyor and chute.  Note, since this button
+            // type is an edge type (low to  high), it will happen for only one robot loop
+            // and we don't need to check if the motor is running before assigning.
+            //
+            if (!eject_mode) {
+                seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
             }
             else {
-                if (!eject_mode_ || !gpm.getConveyor().isRunning())
-                    seq.addSubActionPair(gpm, gpm_eject_action_, false) ;
+                seq.addSubActionPair(gpm, gpm_eject_action_, false) ;  
             }
+            gpm_set = true ;
         }
-        //if intake switch is up; set off
+
+        //
+        // This is a new if because the intake is controlled independently of the GPM.
+        //
         if (getValue(intake_on_) == 0) {
-            intake_on_mode_ = false;
-            if (intake.isRunning())
+            //
+            // If the intake switch is off, turn off the intake.
+            //
+            if (intake.isRunning()) {
                 seq.addSubActionPair(intake, intake_off_action_, false) ;
-        }
-        //if intake button is pressed, run intake
-        // - depending on which way eject switch is positioned, it applys +/- power
-        else {
-            intake_on_mode_ = true;
-            if (getValue(eject_true_) == 0) {
-                if (eject_mode_ || !intake.isRunning())
-                    seq.addSubActionPair(intake, intake_on_action_, false) ;
             }
-            else {
-                if (!eject_mode_ || !intake.isRunning())                
+        }  
+        else {
+            //
+            // The intake switch is on, so turn on the intake if it is not running.  The direction will be determined
+            // by the eject switch.  We change the intake, if it is currently not running, or if the eject state is
+            // differant than the previous eject state.
+            //
+            if (!intake.isRunning() || eject_mode != prev_eject_mode_) {
+                if (eject_mode != prev_eject_mode_)
+                    System.out.println("Triggered due to reversed eject switch") ;
+
+                if (!eject_mode)
+                    seq.addSubActionPair(intake, intake_on_action_, false) ;
+                else
                     seq.addSubActionPair(intake, intake_eject_action_, false) ;
             }
         }
 
-        //Logic problem: if eject switch flips when "everything else" is on, "everything else" doesn't 
-        //   switch from + to - power (or vice versa...)
-        
-        //if eject mode has changed but cc/intake modes are "on"
-        // -> it re-checks and applys the new sign of power
-        // *attempts to fix above logic problem, but following logic doesn't work rn...
-        if (prev_eject_mode_ != eject_mode_ && (intake_on_mode_ == true && cc_on_mode_ == true)) {
-            if (eject_mode_ == false) {
-                seq.addSubActionPair(intake, intake_on_action_, false) ;
-                seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
-            }
-            else if (eject_mode_ == true) {
-                seq.addSubActionPair(intake, intake_eject_action_, false) ;
-                seq.addSubActionPair(gpm, gpm_eject_action_, false) ;
+        if (eject_mode != prev_eject_mode_)
+        {
+            //
+            // Ok, the eject mode switch has changed.  Since the GPM is edge triggered, it would have
+            // only been adjusted by the logic above if the GPM switch also changed in the same robot
+            // loop, which is highly unlikely.  This checks for that state and adjusts the gpm.
+            //
+            if (gpm.isRunning() && !gpm_set)
+            {
+                //
+                // So the GPM is running but the direction was not reset above, so we need to set
+                // the GPM direction here.
+                //
+                if (!eject_mode) {
+                    seq.addSubActionPair(gpm, gpm_deposit_action_, false) ;
+                }
+                else {
+                    seq.addSubActionPair(gpm, gpm_eject_action_, false) ;  
+                }                
             }
         }
 
-        prev_eject_mode_ = eject_mode_ ;
-        eject_mode_ = (getValue(eject_true_) == 1) ;
-
+        prev_eject_mode_ = eject_mode ;
     }
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {

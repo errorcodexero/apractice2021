@@ -35,4 +35,8 @@ public class GamePieceManipulatorSubsystem extends Subsystem {
         super.run() ;
     }
 
+    public boolean isRunning() {
+        return conveyor_.isRunning() ;
+    }
+
 }

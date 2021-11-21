@@ -13,7 +13,7 @@
                         "start" : 1.0,
                         "autonomous" : 0.0,
                         "between" : 0.0,
-                        "teleop" : 5.0,
+                        "teleop" : 6.0,
                         "fms": false
                     }
                 }
@@ -52,9 +52,9 @@
                     "subsystem" : "chute",
                     "property" : "power",
                     "value" : 0.0
-                }
+                }                
             ]
-        },        
+        },
         {
             "time" : 4.0,
             "events":
@@ -64,8 +64,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the C/C On Button to true",
-                        "button5" : true
+                        "comment" : "Setting the Intake On Button to true",
+                        "button10" : true
                     }
                 }
             ]
@@ -77,18 +77,18 @@
                 {
                     "subsystem" : "intake",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : -1.0
                 },
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : -1.0
+                    "value" : 0.0
                 },
                 {
                     "subsystem" : "chute",
                     "property" : "power",
-                    "value" : -1.0
-                }
+                    "value" : 0.0
+                }                
             ]
         },        
         {
@@ -100,14 +100,14 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the C/C On Button to false",
-                        "button5" : false
+                        "comment" : "Setting the Intake On Button to false",
+                        "button10" : false
                     }
                 }
             ]
         },
         {
-            "time" : 4.1,
+            "time" : 5.1,
             "asserts" : 
             [
                 {
@@ -126,6 +126,6 @@
                     "value" : 0.0
                 }
             ]
-        }        
+        }
     ]
 }

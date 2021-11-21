@@ -54,7 +54,7 @@
                     "value" : 0.0
                 }
             ]
-        },          
+        },         
         {
             "time" : 4.0,
             "events":
@@ -64,8 +64,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the c/c On Button to true",
-                        "button5" : true
+                        "comment" : "Setting the Intake On Button to true",
+                        "button10" : true
                     }
                 }
             ]
@@ -77,20 +77,20 @@
                 {
                     "subsystem" : "intake",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : 1.0
                 },
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 1.0
+                    "value" : 0.0
                 },
                 {
                     "subsystem" : "chute",
                     "property" : "power",
-                    "value" : 1.0
+                    "value" : 0.0
                 }
             ]
-        },          
+        },         
         {
             "time" : 5.0,
             "events":
@@ -100,8 +100,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the intake On Button to false",
-                        "button10" : false
+                        "comment" : "Setting eject to true; intake should reverse power sign after this",
+                        "button11" : true
                     }
                 }
             ]
@@ -113,56 +113,20 @@
                 {
                     "subsystem" : "intake",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : -1.0
                 },
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 1.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : 1.0
-                }
-            ]
-        },          
-        {
-            "time" : 6.0,
-            "events":
-            [
-                {
-                    "model" : "bunnybotoi",
-                    "instance" : "1", 
-                    "values" : 
-                    {
-                        "comment" : "Setting eject to true; c/c should reverse power sign after this",
-                        "button11" : false
-                    }
-                }
-            ]
-        },
-        {
-            "time" : 6.1,
-            "asserts" : 
-            [
-                {
-                    "subsystem" : "intake",
-                    "property" : "power",
                     "value" : 0.0
                 },
                 {
-                    "subsystem" : "conveyor",
-                    "property" : "power",
-                    "value" : -1.0
-                },
-                {
                     "subsystem" : "chute",
                     "property" : "power",
-                    "value" : -1.0
+                    "value" : 0.0
                 }
             ]
-        },          
+        },         
         {
             "time" : 7.0,
             "events":
@@ -172,8 +136,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting c/c on to false",
-                        "button5" : false
+                        "comment" : "Setting eject to false",
+                        "button11" : false
                     }
                 }
             ]
@@ -185,7 +149,7 @@
                 {
                     "subsystem" : "intake",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : 1.0
                 },
                 {
                     "subsystem" : "conveyor",
@@ -208,14 +172,14 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "set eject on button to false",
-                        "button11" : false
+                        "comment" : "set Intake on button to false",
+                        "button10" : false
                     }
                 }
             ]
         },
         {
-            "time" : 7.1,
+            "time" : 8.1,
             "asserts" : 
             [
                 {
