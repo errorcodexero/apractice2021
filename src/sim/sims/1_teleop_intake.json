@@ -41,7 +41,7 @@
                 {
                     "subsystem" : "intake",
                     "property" : "power",
-                    "value" : 1.0
+                    "setting" : "subsystems:intake:motor:on:power"
                 },
                 {
                     "subsystem" : "conveyor",
