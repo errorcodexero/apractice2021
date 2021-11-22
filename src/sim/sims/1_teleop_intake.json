@@ -1,4 +1,9 @@
 {
+    "purpose" : [
+        "This file simulates the pressing of the intake button on the OI and then releasing",
+        "the button.  Asserts are used to ensure that the intake motor is running when expected",
+        "when the intake button is pressed."
+    ],
     "stimulus" :
     [
         {
