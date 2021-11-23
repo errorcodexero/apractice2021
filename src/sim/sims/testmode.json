@@ -10,13 +10,23 @@
                     "instance" : "1",
                     "values" :
                     {
-                        "start" : 3.0,
-                        "autonomous" : 30.0,
+                        "start" : 1.0,
+                        "autonomous" : 10.0,
                         "between" : 0.0,
                         "teleop" : 0.0,
                         "fms": false
                     }
-                }
+                },
+                {
+                    "model" : "tankdrive",
+                    "instance" : "1",
+                    "values" : 
+                    {
+                        "xpos" : 0.0,
+                        "ypos" : 150.0,
+                        "angle" : 0.0
+                    }
+                }                
             ]
         }
     ]

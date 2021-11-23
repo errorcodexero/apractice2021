@@ -4,7 +4,7 @@
         "messages" : {
             "actions" : true,
             "tankdrive" : false,
-            "pathfollowing" : false
+            "pathfollowing" : true
         },
         "verbose" : {
             "bunnybot" : true,
@@ -19,7 +19,7 @@
     },
     "subsystems" : {
         "tankdrive" : {
-            "width" : 30.0,
+            "width" : 34.0,
             "scrub" : 1.0,
             "inches_per_tick" : 0.01122386942898,
             "follower" : {
@@ -182,7 +182,7 @@
         "power" : 0.5,
         "duration" : 5.0,
         "distance" : 0.0,
-        "name" : "Test_U"
+        "name" : "Test_Straight"
     }
     
 }

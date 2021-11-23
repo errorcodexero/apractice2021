@@ -32,20 +32,21 @@ public class BunnyBot21 extends XeroRobot {
   }
 
   protected void hardwareInit() throws Exception {
-    BunnyBotSubsystem robotsub = new BunnyBotSubsystem(this) ;
-    setRobotSubsystem(robotsub) ;
+    BunnyBotSubsystem robotsub = new BunnyBotSubsystem(this);
+    setRobotSubsystem(robotsub);
   }
-  
+
   public String getSimulationFileName() {
     String ret = SimArgs.InputFileName;
     if (ret != null)
       return ret;
 
-    return "1_teleop_intake"; //change here to run which simulation file you'd like :)
+    // The name of the stimulus file to use if one was not provided from the command line
+    return "testmode";
   }
 
   protected void addRobotSimulationModels() {
-    ModelFactory factory = SimulationEngine.getInstance().getModelFactory() ;
-    factory.registerModel("bunnybotoi", "frc.model.BunnyBotOIModel");    
+    ModelFactory factory = SimulationEngine.getInstance().getModelFactory();
+    factory.registerModel("bunnybotoi", "frc.model.BunnyBotOIModel");
   }
 }
