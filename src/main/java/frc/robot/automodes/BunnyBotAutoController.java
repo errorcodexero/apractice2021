@@ -25,8 +25,8 @@ public class BunnyBotAutoController extends AutoController {
 
         try {
             test_mode_ = new BunnyBotTestAutoMode(this);
-            modes_[0] = new TwoToteAuto(this, "BunnyBotAutoModeClose", "ClosePath1", "ClosePath2", "automodes:twototeauto:delay") ;
-            modes_[1] = new TwoToteAuto(this, "BunnyBotAutoModeFar", "FarPath1", "FarPath2", "automodes:twototeauto:delay") ;
+            modes_[0] = new TwoToteAuto(this, "BunnyBotAutoModeClose", "AutoMode_Path1", "AutoMode_Path2", "automodes:twototeauto:delay") ;
+            modes_[1] = new TwoToteAuto(this, "BunnyBotAutoModeFar", "AutoMode_Path3", "AutoMode_Path4", "automodes:twototeauto:delay") ;
             modes_[2] = new NopAuto(this, "Nop-2") ;
             modes_[3] = new NopAuto(this, "Nop-3") ;
             modes_[4] = new NopAuto(this, "Nop-4") ;
