@@ -22,11 +22,11 @@ public class BunnyBotAutoController extends AutoController {
 
         MessageLogger logger = getRobot().getMessageLogger() ;
         modes_ = new AutoMode[10] ;
-        
+
         try {
             test_mode_ = new BunnyBotTestAutoMode(this);
-            modes_[0] = new NopAuto(this, "Nop-0") ;
-            modes_[1] = new NopAuto(this, "Nop-1") ;
+            modes_[0] = new TwoToteAuto(this, "BunnyBotAutoModeClose", "ClosePath1", "ClosePath2", "automodes:twototeauto:delay") ;
+            modes_[1] = new TwoToteAuto(this, "BunnyBotAutoModeFar", "FarPath1", "FarPath2", "automodes:twototeauto:delay") ;
             modes_[2] = new NopAuto(this, "Nop-2") ;
             modes_[3] = new NopAuto(this, "Nop-3") ;
             modes_[4] = new NopAuto(this, "Nop-4") ;
