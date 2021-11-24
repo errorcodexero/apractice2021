@@ -42,7 +42,7 @@ public class BunnyBot21 extends XeroRobot {
       return ret;
 
     // The name of the stimulus file to use if one was not provided from the command line
-    return "1_teleop_intake";
+    return "testmode";
   }
 
   protected void addRobotSimulationModels() {

@@ -17,11 +17,11 @@ public class BunnyBotTestAutoMode extends TestAutoMode {
             //
             // Numbers 0 - 9 are for the driverbase
             //
-            case 0: // Drive straight, used to test and get Kv number
+            case 0:     // Drive straight, used to test and get Kv number
                 addSubActionPair(db, new TankDrivePowerAction(db, getPower(), getPower(), getDuration()), true);
                 break;
 
-            case 1:
+            case 1:     // Test the path follower
                 addSubActionPair(db, new TankDrivePathFollowerAction(db, getNameParam(), false), true) ;
                 break ;                
         }
