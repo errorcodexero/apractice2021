@@ -269,15 +269,6 @@ public class BunnyBotOIModel extends SimulationModel {
         return true ;
     }
 
-    // private void defineButton(int index, String name, boolean init) {
-    //     String bname = "button" + index ;
-
-    //     NetworkTable table_ = NetworkTableInstance.getDefault().getTable(SimulationEngine.NetworkTableName).getSubTable(SubTableName) ;
-    //     NetworkTable butable = table_.getSubTable(bname) ;
-    //     butable.getEntry("name").setString(name) ;
-    //     butable.getEntry("state").setBoolean(init) ;
-    // }
-
     private void setButton(int index, boolean value) {
         String bname = "button" + index ;
 

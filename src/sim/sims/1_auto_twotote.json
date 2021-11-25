@@ -21,11 +21,11 @@
                     }
                 },
                 {
-                    "model" : "droidoi",
+                    "model" : "bunnybotoi",
                     "instance" : "1",
                     "values" :
                     {
-                        "comment" : "set to automode to number 0, middle",
+                        "comment" : "set to automode to number 0",
                         "axis0" : -0.95
                     }
                 }                

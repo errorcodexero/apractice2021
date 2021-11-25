@@ -4,7 +4,7 @@
         "messages" : {
             "actions" : true,
             "tankdrive" : false,
-            "pathfollowing" : true
+            "pathfollowing" : false
         },
         "verbose" : {
             "bunnybot" : true,
@@ -133,10 +133,15 @@
             "oi" : {
                 "index" : 2,
                 "gadgets" : {
-                    "intake_on_mode" : 10, 
-                    "gpm_deploy_mode" : 5,
-                    "gpm_stop_mode" : 5,
-                    "eject_true" : 11
+                    "axes" : {
+                        "automode" : 0
+                    },
+                    "buttons" : {
+                        "intake_on_mode" : 10, 
+                        "gpm_deploy_mode" : 5,
+                        "gpm_stop_mode" : 5,
+                        "eject_true" : 11
+                    }
                 }
             }
         },
@@ -204,7 +209,7 @@
         }
     },
     "testmode" : {
-        "enabled" : true,
+        "enabled" : false,
         "which" : 2,
         "power" : 0.5,
         "duration" : 5.0,

@@ -26,6 +26,8 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private int eject_true_ ;
 
+    private int automode_ ;
+
     private Action intake_on_action_ ;
     private Action intake_off_action_ ;
     private Action intake_eject_action_ ;
@@ -42,6 +44,12 @@ public class BunnyBotOIDevice extends OIPanel {
 
         initializeGadgets();
         prev_eject_mode_ = false ;
+    }
+
+    @Override
+    public int getAutoModeSelector() {
+        int v = getValue(automode_) ;
+        return v ;
     }
 
     public void createStaticActions() throws Exception {
@@ -158,23 +166,25 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private void initializeGadgets() throws BadParameterTypeException, MissingParameterException {
         int num;
+
+        // Automode switch
+        num = getSubsystem().getSettingsValue("oi:gadgets:axes:automode").getInteger() ;
+        Double [] map = { -0.9, -0.75, -0.5, -0.25, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0 } ;
+        automode_ = mapAxisScale(num, map) ;
        
-    ///intake on/off switch
-       
-        num = getSubsystem().getSettingsValue("oi:gadgets:intake_on_mode").getInteger() ;
+        // intake on/off switch
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_on_mode").getInteger() ;
         intake_on_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
         
-    ///gpm (conveyor + chute) deploy/stop buttons
-
-        num = getSubsystem().getSettingsValue("oi:gadgets:gpm_deploy_mode").getInteger() ;
+        // gpm (conveyor + chute) deploy/stop buttons
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:gpm_deploy_mode").getInteger() ;
         gpm_deposit_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
 
-        num = getSubsystem().getSettingsValue("oi:gadgets:gpm_stop_mode").getInteger() ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:gpm_stop_mode").getInteger() ;
         gpm_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
 
-    ///"eject mode" switch - what intake/gpm does if it's in eject mode
-
-        num = getSubsystem().getSettingsValue("oi:gadgets:eject_true").getInteger() ;
+        // "eject mode" switch - what intake/gpm does if it's in eject mode
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:eject_true").getInteger() ;
         eject_true_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
 
     }
