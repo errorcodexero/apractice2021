@@ -67,7 +67,6 @@ public class BunnyBotOIDevice extends OIPanel {
         boolean gpm_set = false ;
         int ejvalue = getValue(eject_true_) ;
         boolean eject_mode = (ejvalue == 1) ;
-        double now = getSubsystem().getRobot().getTime() ;
 
         //
         // So, the key here is that the gpm_stop_ and gpm_deposit_ buttons are single

@@ -45,6 +45,28 @@
                 "max" : 1.0,
                 "imax" : 0.0
             },
+            "ramsete" : {
+                "b" : 2.0,
+                "zeta" : 0.7,
+                "left" : {
+                    "kp" : 0.05,
+                    "ki" : 0.0,                    
+                    "kd" : 0.0,
+                    "kf" : 0.008487154,
+                    "min" : -1.0,
+                    "max" : 1.0,
+                    "imax" : 0.0
+                },
+                "right" : {
+                    "kp" : 0.05,
+                    "ki" : 0.0,                    
+                    "kd" : 0.0,
+                    "kf" : 0.008487154,
+                    "min" : -1.0,
+                    "max" : 1.0,
+                    "imax" : 0.0                    
+                }                
+            },
             "hw" : {
                 "gyro" : "navx",
                 "left" : {
@@ -183,11 +205,10 @@
     },
     "testmode" : {
         "enabled" : true,
-        "which" : 1,
+        "which" : 2,
         "power" : 0.5,
         "duration" : 5.0,
         "distance" : 0.0,
-        "name" : "Test_U"
+        "name" : "Test_Curved"
     }
-    
 }
