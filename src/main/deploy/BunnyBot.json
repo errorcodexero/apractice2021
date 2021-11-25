@@ -176,6 +176,11 @@
             }
         }
     },
+    "automodes" : {
+        "twototeauto" : {
+            "delay" : 2.0
+        }
+    },
     "testmode" : {
         "enabled" : true,
         "which" : 1,
