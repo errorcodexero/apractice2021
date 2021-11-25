@@ -19,14 +19,12 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         TankDriveSubsystem db = getBunnyBotSubsystem().getTankDrive() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
         MotorPowerAction intake_on_act_ = new MotorPowerAction(intake, "motor:on:power") ;
-        DelayAction delay_act_ = new DelayAction(getAutoController().getRobot(), delay) ;
 
-        addAction(intake_on_act_) ;
+        addSubActionPair(intake, intake_on_act_, false) ;
         addSubActionPair(db, new TankDrivePathFollowerAction(db, path1, false), true) ;
         addSubActionPair(gpm, new DepositAction(gpm), false) ;
-        addAction(delay_act_) ;
+        addAction(new DelayAction(getAutoController().getRobot(), delay)) ;
         addSubActionPair(gpm, new StopAction(gpm), false) ;
         addSubActionPair(db, new TankDrivePathFollowerAction(db, path2, false), true) ;
     }
-
 }
