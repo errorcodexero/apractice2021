@@ -57,7 +57,7 @@ public class DepositAction extends Action {
 
     @Override
     public String toString(int indent) {
-        return prefix(indent) + "StopAction" ;
+        return prefix(indent) + "DepositAction" ;
     }
 
 }
