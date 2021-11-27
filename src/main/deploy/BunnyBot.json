@@ -182,25 +182,6 @@
                     "canid" : 8
                 }
             }
-        },
-        "chute" : {
-            "motor" : {
-                "on" : {
-                    "power" : 1.0
-                },
-                "off" : {
-                    "power" : 0.0
-                },
-                "eject" : {
-                    "power" : -1.0
-                }
-            },
-            "hw" : {
-                "motors" : {
-                    "type" : "talon_srx",
-                    "canid" : 9
-                }
-            }
         }
     },
     "automodes" : {

@@ -47,11 +47,6 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : 0.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : 0.0
                 }
             ]
         },          
@@ -81,11 +76,6 @@
                 },
                 {
                     "subsystem" : "conveyor",
-                    "property" : "power",
-                    "value" : 1.0
-                },
-                {
-                    "subsystem" : "chute",
                     "property" : "power",
                     "value" : 1.0
                 }
@@ -119,14 +109,9 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : 1.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : 1.0
                 }
             ]
-        },          
+        }, 
         {
             "time" : 6.0,
             "events":
@@ -155,14 +140,9 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : -1.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : -1.0
                 }
             ]
-        },          
+        },
         {
             "time" : 7.0,
             "events":
@@ -191,14 +171,9 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : 0.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : 0.0
                 }
             ]
-        },          
+        }, 
         {
             "time" : 8.0,
             "events":
@@ -225,11 +200,6 @@
                 },
                 {
                     "subsystem" : "conveyor",
-                    "property" : "power",
-                    "value" : 0.0
-                },
-                {
-                    "subsystem" : "chute",
                     "property" : "power",
                     "value" : 0.0
                 }

@@ -38,7 +38,7 @@ public class BunnyBotAutoController extends AutoController {
         }
         catch(Exception e) {
             logger.startMessage(MessageType.Error) ;
-            logger.add("cannot create automode 'DroidTestAutoMode', exception caught - ") ;
+            logger.add("cannot create automode 'BunnyTestAutoMode', exception caught - ") ;
             logger.add(e.getMessage()) ;
             logger.endMessage();
         }

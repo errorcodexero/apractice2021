@@ -1,13 +1,13 @@
-package frc.robot.gamepiecemanipulator.chute;
+package frc.robot.conveyor;
 
 import org.xero1425.base.Subsystem;
 import org.xero1425.base.motorsubsystem.MotorPowerAction;
 import org.xero1425.base.motorsubsystem.MotorSubsystem;
 
-public class ChuteSubsystem extends MotorSubsystem {
-    public static final String SubsystemName = "chute";
+public class ConveyorSubsystem extends MotorSubsystem {
+    public static final String SubsystemName = "conveyor";
 
-    public ChuteSubsystem(Subsystem parent) throws Exception {
+    public ConveyorSubsystem(Subsystem parent) throws Exception{
         super(parent, SubsystemName);
         
     }
@@ -21,6 +21,6 @@ public class ChuteSubsystem extends MotorSubsystem {
     public void computeMyState() throws Exception {
         super.computeMyState();
     }
-    
+
 }
 
