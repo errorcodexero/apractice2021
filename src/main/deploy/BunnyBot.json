@@ -4,6 +4,7 @@
         "messages" : {
             "actions" : true,
             "tankdrive" : false,
+            "tankdrive_model" : false,
             "pathfollowing" : false
         },
         "verbose" : {

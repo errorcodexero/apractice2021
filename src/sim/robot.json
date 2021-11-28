@@ -29,8 +29,7 @@
                 "left:motor:2:type" : "talonsrx",
                 "left:motor:3:index" : 6,
                 "left:motor:3:type" : "talonsrx",   
-                "left:encoder:1" : 10,
-                "left:encoder:2" : 11,
+                "left:encoder:index" : 0,
                 "right:motor:1:index" : 1,
                 "right:motor:1:type" : "talonsrx",
                 "right:motor:2:index" : 2,
@@ -38,17 +37,14 @@
                 "right:motor:3:index" : 3,
                 "right:motor:3:type" : "talonsrx",
                 "right:motor:inverted" : true,
-                "right:encoder:1" : 12,
-                "right:encoder:2" : 13,
-                "use_motor_encoders" : true,
-                "right:encoder:inverted" : true,
+                "right:encoder:index" : 1,
                 "diameter" : 6.0,
                 "scrub" : 1.0,
                 "width" : 34.0,
                 "length" : 26.0,
                 "inches_per_tick" : 0.01122386942898,
-                "maxvelocity" : 90.0,
-                "maxacceleration" : 90.0
+                "maxvelocity" : 117.8,
+                "maxacceleration" : 117800.0
             }
         },
         {
@@ -67,7 +63,6 @@
             "instance" : "1",
             "props" : {
                 "index" : 2,
-                "xbox" : false,
                 "name" : "Error Code Xero Custom OI",
                 "axes" : 8,
                 "buttons" : 16,
