@@ -167,13 +167,13 @@
         },
         "conveyor" : {
             "motor" : {
-                "on" : {
+                "left" : {
                     "power" : 1.0
                 },
                 "off" : {
                     "power" : 0.0
                 },
-                "eject" : {
+                "right" : {
                     "power" : -1.0
                 }
             },
