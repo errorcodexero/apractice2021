@@ -20,7 +20,7 @@ public class ConveyorSubsystem extends MotorSubsystem {
     private double left_gate_open_pos_ ;
     private double left_gate_closed_pos_ ;
     private double right_gate_open_pos_ ;
-    private double right_gate_close_pos_ ;
+    private double right_gate_closed_pos_ ;
 
     private LeftGatePosition l_desired_ ;
     private LeftGatePosition l_actual_ ;
@@ -48,8 +48,10 @@ public class ConveyorSubsystem extends MotorSubsystem {
     public ConveyorSubsystem(Subsystem parent) throws Exception {
         super(parent, SubsystemName);
         
-        int index = getRobot().getSettingsParser().get("hw:conveyor:gate").getInteger() ;
+        int index = getRobot().getSettingsParser().get("hw:gate:l").getInteger() ;
         left_gate_servo_ = new Servo(index) ;
+        index = getRobot().getSettingsParser().get("hw:gate:r").getInteger() ;
+        right_gate_servo_ = new Servo(index) ;
 
         left_gate_open_pos_ = getRobot().getSettingsParser().get("gate:left:open").getDouble() ;
         left_gate_closed_pos_ = getRobot().getSettingsParser().get("gate:left:closed").getDouble() ;
@@ -115,12 +117,12 @@ public class ConveyorSubsystem extends MotorSubsystem {
     private void updatePhysicalRightGate() {
         if (r_desired_ == RightGatePosition.OPEN)
         {
-            left_gate_servo_.set(left_gate_open_pos_) ;
+            right_gate_servo_.set(right_gate_open_pos_) ;
             r_actual_ = r_desired_  ;
         }
         else if (r_desired_ == RightGatePosition.CLOSED)
         {
-            left_gate_servo_.set(left_gate_closed_pos_) ;  
+            right_gate_servo_.set(right_gate_closed_pos_) ;  
             r_actual_ = r_desired_  ;              
         }
     }

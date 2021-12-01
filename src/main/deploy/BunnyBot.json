@@ -177,10 +177,20 @@
                     "power" : -1.0
                 }
             },
-            "hw" : {
+            "hw" : { 
                 "motors" : {
                     "type" : "talon_srx",
                     "canid" : 8
+                },
+                "gate" : {
+                    "l" : {
+                    "type" : "servo",
+                    "canid" : 0
+                    },
+                    "r" : {
+                        "type" : "servo",
+                        "canid" : 1
+                    }
                 }
             }
         }
