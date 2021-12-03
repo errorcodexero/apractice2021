@@ -47,7 +47,7 @@ public class BunnyBot21 extends XeroRobot {
       return ret;
 
     // The name of the stimulus file to use if one was not provided from the command line
-    return "1_auto_twotote";
+    return "1_test_wpilib";
   }
 
   protected void addRobotSimulationModels() {

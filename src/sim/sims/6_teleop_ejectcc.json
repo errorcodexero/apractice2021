@@ -47,11 +47,6 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : 0.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : 0.0
                 }
             ]
         },        
@@ -83,11 +78,6 @@
                     "subsystem" : "conveyor",
                     "property" : "power",
                     "value" : -1.0
-                },
-                {
-                    "subsystem" : "chute",
-                    "property" : "power",
-                    "value" : -1.0
                 }
             ]
         },        
@@ -117,11 +107,6 @@
                 },
                 {
                     "subsystem" : "conveyor",
-                    "property" : "power",
-                    "value" : 0.0
-                },
-                {
-                    "subsystem" : "chute",
                     "property" : "power",
                     "value" : 0.0
                 }

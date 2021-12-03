@@ -5,16 +5,16 @@ import org.xero1425.base.XeroRobot;
 import org.xero1425.base.tankdrive.TankDriveSubsystem;
 
 import frc.robot.bunnybotoi.BunnyBotOISubsystem;
-import frc.robot.gamepiecemanipulator.GamePieceManipulatorSubsystem;
+import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakeSubsystem;
 
 public class BunnyBotSubsystem extends RobotSubsystem {
     public final static String SubsystemName = "bunnybot" ;
     public final static String TankdriveSubsystemName = "tankdrive" ;
     private TankDriveSubsystem db_ ;
-    private GamePieceManipulatorSubsystem gpm_ ;
+    private ConveyorSubsystem conveyor_ ;
     private IntakeSubsystem intake_ ;
-    private BunnyBotOISubsystem oi_;
+    private BunnyBotOISubsystem oi_ ;
 
     public BunnyBotSubsystem(XeroRobot robot) throws Exception {
         super(robot, SubsystemName) ;
@@ -22,8 +22,8 @@ public class BunnyBotSubsystem extends RobotSubsystem {
         db_ = new TankDriveSubsystem(this, TankdriveSubsystemName, "tankdrive") ;
         addChild(db_) ;
 
-        gpm_ = new GamePieceManipulatorSubsystem(this) ;
-        addChild(gpm_) ;
+        conveyor_ = new ConveyorSubsystem(this) ;
+        addChild(conveyor_) ;
 
         intake_ = new IntakeSubsystem(this) ;
         addChild(intake_) ;
@@ -36,8 +36,8 @@ public class BunnyBotSubsystem extends RobotSubsystem {
         return db_ ;
     }
     
-    public GamePieceManipulatorSubsystem getGamePieceManipulator() {
-        return gpm_ ;
+    public ConveyorSubsystem getGamePieceManipulator() {
+        return conveyor_ ;
     }
 
     public IntakeSubsystem getIntake() {
