@@ -6,14 +6,13 @@ import org.xero1425.base.motorsubsystem.MotorPowerAction;
 import org.xero1425.base.tankdrive.TankDrivePathFollowerAction;
 import org.xero1425.base.tankdrive.TankDriveSubsystem;
 
-import frc.robot.conveyor.ConveyorDeployRightAction;
-import frc.robot.conveyor.ConveyorOffAction;
 import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakeSubsystem;
 
 public class TwoToteAuto extends BunnyBotAutoMode {
 
     private Action conveyor_deploy_right_action_;
+    private Action conveyor_deploy_left_action_;
     private Action conveyor_off_action_ ; 
 
     public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay) 
@@ -26,8 +25,9 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         MotorPowerAction intake_on_act_ = new MotorPowerAction(intake, "motor:on:power") ;
 
         //need a seperate automode if we're doing Right vs Left deploying
-        conveyor_deploy_right_action_ = new ConveyorDeployRightAction(conveyor, true);
-        conveyor_off_action_ = new ConveyorOffAction(conveyor, true);
+        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "motor:right:power");
+        conveyor_deploy_left_action_ = new MotorPowerAction(conveyor, "motor:left:power");
+        conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0);
 
         //turn on intake
         addSubActionPair(intake, intake_on_act_, false) ;

@@ -54,9 +54,10 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        conveyor_deposit_action_ = new MotorPowerAction(conveyor, "motor:on:power") ;
+        // TODO: add a deposit right and deposit left action instead of "deposit vs eject"
+        conveyor_deposit_action_ = new MotorPowerAction(conveyor, "motor:right:power") ;
         conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ;
-        conveyor_eject_action_ = new MotorPowerAction(conveyor, "motor:eject:power") ;
+        conveyor_eject_action_ = new MotorPowerAction(conveyor, "motor:left:power") ;
 
         intake_on_action_ = new MotorPowerAction(intake, "motor:on:power") ;
         intake_off_action_ = new MotorPowerAction(intake, 0.0) ;
