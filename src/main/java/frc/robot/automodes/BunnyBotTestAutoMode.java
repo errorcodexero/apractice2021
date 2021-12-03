@@ -29,6 +29,14 @@ public class BunnyBotTestAutoMode extends TestAutoMode {
             case 2:
                 // addSubActionPair(db, new TankDriveRamseteAction(db, getNameParam(), false), true);
                 break ;
+
+            case 3:     // Drive left db motors
+                addSubActionPair(db, new TankDrivePowerAction(db, getPower(), 0.0, getDuration()), true);
+                break;
+
+            case 4:     // Drive right db motors
+                addSubActionPair(db, new TankDrivePowerAction(db, 0.0, getPower(), getDuration()), true);
+                break;
         }
     }
 }
