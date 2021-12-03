@@ -59,8 +59,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the Eject Switch to true",
-                        "button11" : true
+                        "comment" : "Setting the left conveyor button to true",
+                        "button6" : true
                     }
                 }
             ]
@@ -90,7 +90,7 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the C/C On Button to false",
+                        "comment" : "Setting the C/C right On Button to off",
                         "button5" : false
                     }
                 }

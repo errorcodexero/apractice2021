@@ -59,8 +59,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the c/c On Button to true",
-                        "button5" : true
+                        "comment" : "Setting the c/c left-deploy to true",
+                        "button6" : true
                     }
                 }
             ]
@@ -77,7 +77,7 @@
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 1.0
+                    "value" : -1.0
                 }
             ]
         },          
@@ -90,7 +90,7 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting eject to true; c/c should reverse power sign after this",
+                        "comment" : "Setting eject to true",
                         "button11" : true
                     }
                 }
@@ -139,7 +139,7 @@
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 1.0
+                    "value" : -1.0
                 }
             ]
         },        
@@ -152,8 +152,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "set c/c on button to false",
-                        "button5" : false
+                        "comment" : "set c/c on right button to true",
+                        "button5" : true
                     }
                 }
             ]
@@ -170,7 +170,7 @@
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : 1.0
                 }
             ]
         }

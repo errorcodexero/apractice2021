@@ -139,8 +139,10 @@
                     },
                     "buttons" : {
                         "intake_on_mode" : 10, 
-                        "gpm_deploy_mode" : 5,
-                        "gpm_stop_mode" : 5,
+                        "conveyor_right_mode" : 5,
+                        "conveyor_r_stop_mode" : 5,
+                        "conveyor_left_mode" : 6,
+                        "conveyor_l_stop_mode" : 6,
                         "eject_true" : 11
                     }
                 }
@@ -168,13 +170,13 @@
         "conveyor" : {
             "motor" : {
                 "left" : {
-                    "power" : 1.0
+                    "power" : -1.0
                 },
                 "off" : {
                     "power" : 0.0
                 },
                 "right" : {
-                    "power" : -1.0
+                    "power" : 1.0
                 }
             },
             "hw" : { 

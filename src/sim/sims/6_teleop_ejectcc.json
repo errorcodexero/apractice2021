@@ -28,8 +28,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the Eject Switch to true",
-                        "button11" : true
+                        "comment" : "Setting the Conveyor left Switch to true",
+                        "button6" : true
                     }
                 }
             ]
@@ -46,7 +46,7 @@
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : 0.0
+                    "value" : -1.0
                 }
             ]
         },        
@@ -59,7 +59,7 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the C/C On Button to true",
+                        "comment" : "Setting the C/C right On Button to true",
                         "button5" : true
                     }
                 }
@@ -77,7 +77,7 @@
                 {
                     "subsystem" : "conveyor",
                     "property" : "power",
-                    "value" : -1.0
+                    "value" : 1.0
                 }
             ]
         },        
@@ -90,8 +90,8 @@
                     "instance" : "1", 
                     "values" : 
                     {
-                        "comment" : "Setting the C/C On Button to false",
-                        "button5" : false
+                        "comment" : "Setting the C/C left button off aka false",
+                        "button6" : false
                     }
                 }
             ]

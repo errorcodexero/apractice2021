@@ -18,8 +18,10 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private int intake_on_ ;
 
-    private int conveyor_deposit_ ;
-    private int conveyor_stop_ ;
+    private int conveyor_right_ ;
+    private int conveyor_left_ ;
+    private int conveyor_r_stop_ ;
+    private int conveyor_l_stop_ ;
 
     private int eject_true_ ;
 
@@ -29,9 +31,9 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action intake_off_action_ ;
     private Action intake_eject_action_ ;
 
-    private Action conveyor_deposit_action_ ;
-    private Action conveyor_stop_action_ ; 
-    private Action conveyor_eject_action_ ;
+    private Action conveyor_right_deposit_ ;
+    private Action conveyor_stop_action_ ;    
+    private Action conveyor_left_deposit_ ;
 
     private boolean prev_eject_mode_ ;
     
@@ -54,13 +56,12 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        // TODO: add a deposit right and deposit left action instead of "deposit vs eject"
-        conveyor_deposit_action_ = new MotorPowerAction(conveyor, "motor:right:power") ;
-        conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ;
-        conveyor_eject_action_ = new MotorPowerAction(conveyor, "motor:left:power") ;
+        conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ; //"motor:off:power"
+        conveyor_right_deposit_ = new MotorPowerAction(conveyor, "motor:right:power") ;
+        conveyor_left_deposit_ = new MotorPowerAction(conveyor, "motor:left:power") ; 
 
+        intake_off_action_ = new MotorPowerAction(intake, 0.0) ; //"motor:off:power"
         intake_on_action_ = new MotorPowerAction(intake, "motor:on:power") ;
-        intake_off_action_ = new MotorPowerAction(intake, 0.0) ;
         intake_eject_action_ = new MotorPowerAction(intake, "motor:eject:power") ;
     }
 
@@ -70,45 +71,48 @@ public class BunnyBotOIDevice extends OIPanel {
 
     @Override
     public void generateActions(SequenceAction seq) throws InvalidActionRequest {
-        boolean gpm_set = false ;
         int ejvalue = getValue(eject_true_) ;
         boolean eject_mode = (ejvalue == 1) ;
 
         //
-        // So, the key here is that the gpm_stop_ and gpm_deposit_ buttons are single
-        // events and will not assert their value when triggered except for a single
-        // event loop.  The intake_on_ and the eject_true_ are level buttons and will
-        // assert their values every event loop.  The logic below must do the right
-        // things under these conditions. 
-        //
+        // Conveyor and Intake are the 2 subsystems here
+        //  -- Conveyor can either be stopped, going right, or going left
+        //  -- Intake can either run ON or OFF and can be set to eject mode
+        // 
 
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        if (getValue(conveyor_stop_) == 1) {
+        /// CONVEYOR
+        if (getValue(conveyor_l_stop_) == 1) {
             //
-            // So, first priority, if the gpm_deposit_ button was released, we stop the conveyor
-            // and the chute.  Eject does not matter since there is no direction to stopped
+            // So, first priority, if the conveyor_right button was released, we stop the conveyor
             //            
             seq.addSubActionPair(conveyor, conveyor_stop_action_, false) ;
-            gpm_set = true ;
         }
-        else if (getValue(conveyor_deposit_) == 1) {
+        else if (getValue(conveyor_r_stop_) == 1) {
             //
-            // If we are here, the gpm_deposit_ button was pressed.  The eject button will
-            // determine the direction of the conveyor and chute.  Note, since this button
-            // type is an edge type (low to  high), it will happen for only one robot loop
-            // and we don't need to check if the motor is running before assigning.
+            // So, first-second priority, if the conveyor_right button was released, we stop the conveyor
+            //            
+            seq.addSubActionPair(conveyor, conveyor_stop_action_, false) ;
+        }
+        else if (getValue(conveyor_right_) == 1) {
             //
-            if (!eject_mode) {
-                seq.addSubActionPair(conveyor, conveyor_deposit_action_, false) ;
-            }
-            else {
-                seq.addSubActionPair(conveyor, conveyor_eject_action_, false) ;  
-            }
-            gpm_set = true ;
+            // If we are here, the conveyor right-deposit button was pressed, so we assign the action
+            // * Right always takes priority over left
+            //
+            seq.addSubActionPair(conveyor, conveyor_right_deposit_, false) ;
+        } 
+        else if (getValue(conveyor_left_) == 1) {
+            //
+            // If we are here, the conveyor left-deposit button was pressed, so we assign the action
+            // * Left takes 2nd priority with respect to right, if pressed at the same time, then 
+            //    right-deposit will run
+            //
+            seq.addSubActionPair(conveyor, conveyor_left_deposit_, false) ;
         }
 
+        /// INTAKE
         //
         // This is a new if because the intake is controlled independently of the GPM.
         //
@@ -137,28 +141,6 @@ public class BunnyBotOIDevice extends OIPanel {
             }
         }
 
-        if (eject_mode != prev_eject_mode_)
-        {
-            //
-            // Ok, the eject mode switch has changed.  Since the GPM is edge triggered, it would have
-            // only been adjusted by the logic above if the GPM switch also changed in the same robot
-            // loop, which is highly unlikely.  This checks for that state and adjusts the gpm.
-            //
-            if (conveyor.isRunning() && !gpm_set)
-            {
-                //
-                // So the GPM is running but the direction was not reset above, so we need to set
-                // the GPM direction here.
-                //
-                if (!eject_mode) {
-                    seq.addSubActionPair(conveyor, conveyor_deposit_action_, false) ;
-                }
-                else {
-                    seq.addSubActionPair(conveyor, conveyor_eject_action_, false) ;  
-                }                
-            }
-        }
-
         prev_eject_mode_ = eject_mode ;
     }
 
@@ -174,16 +156,30 @@ public class BunnyBotOIDevice extends OIPanel {
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_on_mode").getInteger() ;
         intake_on_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
         
-        // gpm (conveyor + chute) deploy/stop buttons
-        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:gpm_deploy_mode").getInteger() ;
-        conveyor_deposit_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
+        // // conveyor right and left deploy  + stop buttons
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_right_mode").getInteger() ;
+        conveyor_right_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
 
-        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:gpm_stop_mode").getInteger() ;
-        conveyor_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_r_stop_mode").getInteger() ;
+        conveyor_r_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
+        
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_left_mode").getInteger() ;
+        conveyor_left_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
+
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_l_stop_mode").getInteger() ;
+        conveyor_l_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
 
         // "eject mode" switch - what intake/gpm does if it's in eject mode
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:eject_true").getInteger() ;
         eject_true_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
+
+        // dial for intake velocity tune
+
+
+        // dial for conveyor velocity tune
+
+
+        // button for squirt water
 
     }
 
