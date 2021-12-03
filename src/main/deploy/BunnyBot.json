@@ -72,36 +72,36 @@
                 "left" : {
                     "motors" : {
                         "1" : {
-                            "type" : "talon_srx",
-                            "canid" : 4
+                            "type" : "victor_spx",
+                            "canid" : 3
                         },
                         "2" : {
-                            "type" : "talon_srx",
-                            "canid" : 5
+                            "type" : "victor_spx",
+                            "canid" : 2
                         },
                         "3" : {
-                            "type" : "talon_srx",
-                            "canid" : 6
+                            "type" : "victor_spx",
+                            "canid" : 1
                         }                        
                     },
                     "encoders" : {
-                        "1" : 11,
-                        "2" : 10
+                        "1" : 10,
+                        "2" : 11
                     }
                 },
                 "right" : {
                     "motors" : {
                         "1" : {
-                            "type" : "talon_srx",
-                            "canid" : 1
+                            "type" : "victor_spx",
+                            "canid" : 6
                         },
                         "2" : {
-                            "type" : "talon_srx",
-                            "canid" : 2
+                            "type" : "victor_spx",
+                            "canid" : 5
                         },
                         "3" : {
-                            "type" : "talon_srx",
-                            "canid" : 3
+                            "type" : "victor_spx",
+                            "canid" : 4
                         },
                         "inverted" : true                        
                     },
@@ -209,9 +209,9 @@
         }
     },
     "testmode" : {
-        "enabled" : false,
-        "which" : 2,
-        "power" : 0.5,
+        "enabled" : true,
+        "which" : 4,
+        "power" : 0.2,
         "duration" : 5.0,
         "distance" : 0.0,
         "name" : "Test_Curved"
