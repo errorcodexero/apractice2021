@@ -86,7 +86,8 @@ function prunetests()
 
 function runtests()
 {
-    echo -n "Running tests:"
+    i=0
+    echo -n "Running tests: "
     first=true
     for TEST in ${RUNTESTS[@]}; do
 	if [ $first == "false" ]; then
@@ -94,7 +95,15 @@ function runtests()
 	fi
 	echo -n $TEST
 	first=false
+	i=$((i+1))
+	if [ $i -gt 4 ]; then
+	    first=true
+	    echo
+	    echo -n "               "
+	    i=0
+	fi	
     done
+    echo
     echo
     
     for TEST in ${RUNTESTS[@]}; do
