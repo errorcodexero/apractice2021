@@ -38,6 +38,7 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_stop_action_ ;    
     private Action conveyor_left_deposit_ ;
 
+    // TODO: fix these water actions
     private Action water_squirt_action_ ;
     private Action water_stop_action_ ;
 
