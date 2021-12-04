@@ -25,6 +25,9 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private int eject_true_ ;
 
+    private int water_squirt_ ;
+    private int water_stop_ ;
+
     private int automode_ ;
 
     private Action intake_on_action_ ;
@@ -34,6 +37,9 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_right_deposit_ ;
     private Action conveyor_stop_action_ ;    
     private Action conveyor_left_deposit_ ;
+
+    private Action water_squirt_action_ ;
+    private Action water_stop_action_ ;
 
     private boolean prev_eject_mode_ ;
     
@@ -63,6 +69,11 @@ public class BunnyBotOIDevice extends OIPanel {
         intake_off_action_ = new MotorPowerAction(intake, 0.0) ; //"motor:off:power"
         intake_on_action_ = new MotorPowerAction(intake, "motor:on:power") ;
         intake_eject_action_ = new MotorPowerAction(intake, "motor:eject:power") ;
+
+        // TODO: water actions in OI
+        // water_squirt_action_ = ...
+        // water_stop_action_ = ...
+
     }
 
     private BunnyBotSubsystem getBunnyBotSubsystem() {
@@ -75,9 +86,10 @@ public class BunnyBotOIDevice extends OIPanel {
         boolean eject_mode = (ejvalue == 1) ;
 
         //
-        // Conveyor and Intake are the 2 subsystems here
+        // Conveyor, Intake, and water are the 2 subsystems here
         //  -- Conveyor can either be stopped, going right, or going left
         //  -- Intake can either run ON or OFF and can be set to eject mode
+        //  -- Water can either be shooting or off
         // 
 
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
@@ -92,7 +104,7 @@ public class BunnyBotOIDevice extends OIPanel {
         }
         else if (getValue(conveyor_r_stop_) == 1) {
             //
-            // So, first-second priority, if the conveyor_right button was released, we stop the conveyor
+            // So, second-first priority, if the conveyor_right button was released, we stop the conveyor
             //            
             seq.addSubActionPair(conveyor, conveyor_stop_action_, false) ;
         }
@@ -141,6 +153,20 @@ public class BunnyBotOIDevice extends OIPanel {
             }
         }
 
+        // WATER SHOOTER
+        if (getValue(water_squirt_) == 1) {
+            
+            //turn on water shooter for as long as pressed
+
+            // TODO: seq.addSubActionPair(sub, act, block);
+        } 
+        else if (getValue(water_stop_) == 1) {
+
+            //turn off water
+
+            // TODO: seq.addSubActionPair(sub, act, block);
+        }
+
         prev_eject_mode_ = eject_mode ;
     }
 
@@ -180,6 +206,11 @@ public class BunnyBotOIDevice extends OIPanel {
 
 
         // button for squirt water
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:water_squirt").getInteger() ;
+        water_squirt_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
+
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:water_stop").getInteger() ;
+        water_stop_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
 
     }
 

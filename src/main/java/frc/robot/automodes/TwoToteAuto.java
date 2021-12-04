@@ -15,7 +15,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
     private Action conveyor_deploy_left_action_;
     private Action conveyor_off_action_ ; 
 
-    public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay) 
+    public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay, String delay_close_gate) 
             throws Exception {
         super(ctrl, "TwoToteAuto") ;
 
@@ -37,11 +37,17 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         addSubActionPair(conveyor, conveyor_deploy_right_action_, false);
         addAction(new DelayAction(getAutoController().getRobot(), delay)) ;
         addSubActionPair(conveyor, conveyor_off_action_, false) ;
+        addSubActionPair(conveyor, conveyor_deploy_left_action_, false);
+        addAction(new DelayAction(getAutoController().getRobot(), delay_close_gate)) ;
+        addSubActionPair(conveyor, conveyor_off_action_, false) ;
         //drive 2nd path
         addSubActionPair(db, new TankDrivePathFollowerAction(db, path2, false), true) ;
         //deposit in 2nd tote
         addSubActionPair(conveyor, conveyor_deploy_right_action_, false);
         addAction(new DelayAction(getAutoController().getRobot(), delay)) ;
+        addSubActionPair(conveyor, conveyor_off_action_, false) ;
+        addSubActionPair(conveyor, conveyor_deploy_left_action_, false);
+        addAction(new DelayAction(getAutoController().getRobot(), delay_close_gate)) ;
         addSubActionPair(conveyor, conveyor_off_action_, false) ;
         
     }

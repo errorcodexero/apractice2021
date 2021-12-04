@@ -143,7 +143,9 @@
                         "conveyor_r_stop_mode" : 5,
                         "conveyor_left_mode" : 6,
                         "conveyor_l_stop_mode" : 6,
-                        "eject_true" : 11
+                        "eject_true" : 11,
+                        "water_squirt" : 7,
+                        "water_stop" : 7
                     }
                 }
             }
@@ -189,7 +191,8 @@
     },
     "automodes" : {
         "twototeauto" : {
-            "delay" : 2.0
+            "delay" : 2.0,
+            "delay_close_gate" : 2.0
         }
     },
     "testmode" : {
