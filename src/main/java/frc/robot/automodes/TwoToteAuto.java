@@ -19,7 +19,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
             throws Exception {
         super(ctrl, "TwoToteAuto") ;
 
-        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ; 
+        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ; 
         TankDriveSubsystem db = getBunnyBotSubsystem().getTankDrive() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
         MotorPowerAction intake_on_act_ = new MotorPowerAction(intake, "motor:on:power") ;

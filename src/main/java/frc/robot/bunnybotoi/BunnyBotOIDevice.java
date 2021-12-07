@@ -60,7 +60,7 @@ public class BunnyBotOIDevice extends OIPanel {
 
     public void createStaticActions() throws Exception {
 
-        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
+        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
         conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ; //"motor:off:power"
@@ -93,7 +93,7 @@ public class BunnyBotOIDevice extends OIPanel {
         //  -- Water can either be shooting or off
         // 
 
-        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getGamePieceManipulator() ;
+        ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
         /// CONVEYOR

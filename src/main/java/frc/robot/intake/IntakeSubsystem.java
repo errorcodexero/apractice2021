@@ -16,10 +16,6 @@ public class IntakeSubsystem extends MotorSubsystem {
     public void postHWInit() {
         setDefaultAction(new MotorPowerAction(this, 0.0));
     }
-
-    @Override 
-    public void computeMyState() throws Exception {
-        super.computeMyState();
-    }
+    
 }
 

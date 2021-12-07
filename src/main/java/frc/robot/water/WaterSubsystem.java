@@ -3,8 +3,6 @@ package frc.robot.water;
 import org.xero1425.base.Subsystem;
 
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Direction;
-import edu.wpi.first.wpilibj.Relay.Value;
 
 public class WaterSubsystem {
     public static final String SubsystemName = "water";
@@ -23,7 +21,7 @@ public class WaterSubsystem {
     private OnOffState squirt_down_state_ = OnOffState.UNKNOWN;
 
     public WaterSubsystem(Subsystem parent) throws Exception {
-        water_relay_ = new Relay(0, Direction.kForward) ; 
+        water_relay_ = new Relay(0, Relay.Direction.kForward) ; 
         // TODO: get the "channel" for relay (currently set to "0") from params file
 
     }
@@ -31,11 +29,11 @@ public class WaterSubsystem {
     public void setPump (OnOffState relay) {
         if (relay == OnOffState.ON) {
             water_relay_state_ = OnOffState.ON ;
-            water_relay_.set(Value.kOn) ;
+            water_relay_.set(Relay.Value.kOn) ;
         }
         else if (relay == OnOffState.OFF) {
             water_relay_state_ = OnOffState.OFF ;
-            water_relay_.set(Value.kOff) ;
+            water_relay_.set(Relay.Value.kOff) ;
         }
     }
 

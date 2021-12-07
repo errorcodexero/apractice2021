@@ -19,16 +19,5 @@ public class ConveyorSubsystem extends MotorSubsystem {
         setDefaultAction(new MotorPowerAction(this, 0.0));
     }
 
-    @Override 
-    public void computeMyState() throws Exception {
-        super.computeMyState() ;
-      
-    }
-
-    @Override
-    public void run() throws Exception {
-        super.run() ;
-    }
-
 }
 

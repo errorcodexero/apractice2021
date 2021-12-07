@@ -36,7 +36,7 @@ public class BunnyBotSubsystem extends RobotSubsystem {
         return db_ ;
     }
     
-    public ConveyorSubsystem getGamePieceManipulator() {
+    public ConveyorSubsystem getConveyorSubsystem() {
         return conveyor_ ;
     }
 
