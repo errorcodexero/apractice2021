@@ -50,6 +50,7 @@ public class BunnyBotOIDevice extends OIPanel {
 
         initializeGadgets();
         prev_eject_mode_ = false ;
+
     }
 
     @Override
