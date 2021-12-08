@@ -37,6 +37,7 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_right_deposit_ ;
     private Action conveyor_stop_action_ ;    
     private Action conveyor_left_deposit_ ;
+    private Action conveyor_close_gate_ ;
 
     // TODO: fix these water actions
     private Action water_squirt_action_ ;
@@ -46,7 +47,7 @@ public class BunnyBotOIDevice extends OIPanel {
     
     public BunnyBotOIDevice(OISubsystem sub, String name, int index)
             throws BadParameterTypeException, MissingParameterException {
-        super(sub, name, index);
+        super(sub, name, index) ;
 
         initializeGadgets();
         prev_eject_mode_ = false ;
@@ -64,8 +65,10 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
+
         conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ; //"motor:off:power"
         conveyor_right_deposit_ = new MotorPowerAction(conveyor, "motor:right:power") ;
+        conveyor_close_gate_ = new MotorPowerAction(conveyor, "motor:left:power", "motor:left:delay") ;
         conveyor_left_deposit_ = new MotorPowerAction(conveyor, "motor:left:power") ; 
 
         intake_off_action_ = new MotorPowerAction(intake, 0.0) ; //"motor:off:power"
@@ -98,17 +101,20 @@ public class BunnyBotOIDevice extends OIPanel {
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
         /// CONVEYOR
-        if (getValue(conveyor_l_stop_) == 1) {
+        if (getValue(conveyor_r_stop_) == 1) {
             //
             // So, first priority, if the conveyor_right button was released, we stop the conveyor
             //            
+            seq.addSubActionPair(conveyor, conveyor_close_gate_, false) ;
             seq.addSubActionPair(conveyor, conveyor_stop_action_, false) ;
+
         }
-        else if (getValue(conveyor_r_stop_) == 1) {
+        else if (getValue(conveyor_l_stop_) == 1) {
             //
             // So, second-first priority, if the conveyor_right button was released, we stop the conveyor
             //            
             seq.addSubActionPair(conveyor, conveyor_stop_action_, false) ;
+
         }
         else if (getValue(conveyor_right_) == 1) {
             //

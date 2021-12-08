@@ -172,7 +172,8 @@
         "conveyor" : {
             "motor" : {
                 "left" : {
-                    "power" : -1.0
+                    "power" : -1.0,
+                    "delay" : 2.0
                 },
                 "off" : {
                     "power" : 0.0
