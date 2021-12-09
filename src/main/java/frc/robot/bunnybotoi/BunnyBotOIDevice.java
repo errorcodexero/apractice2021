@@ -8,10 +8,12 @@ import org.xero1425.base.oi.OISubsystem;
 import org.xero1425.base.oi.OIPanel;
 import org.xero1425.base.oi.OIPanelButton;
 import org.xero1425.misc.BadParameterTypeException;
+import org.xero1425.misc.MessageLogger;
 import org.xero1425.misc.MissingParameterException;
 
 import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
 import frc.robot.conveyor.ConveyorSubsystem;
+import frc.robot.intake.IntakePowerAction;
 import frc.robot.intake.IntakeSubsystem;
 
 public class BunnyBotOIDevice extends OIPanel {
@@ -45,12 +47,17 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private boolean prev_eject_mode_ ;
     
-    public BunnyBotOIDevice(OISubsystem sub, String name, int index)
+
+    private MessageLogger logger_ ;
+    
+    public BunnyBotOIDevice(OISubsystem sub, String name, int index, MessageLogger logger)
             throws BadParameterTypeException, MissingParameterException {
         super(sub, name, index) ;
 
         initializeGadgets();
         prev_eject_mode_ = false ;
+
+        logger_ = logger ;
 
     }
 
@@ -65,15 +72,14 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-
         conveyor_stop_action_ = new MotorPowerAction(conveyor, 0.0) ; //"motor:off:power"
         conveyor_right_deposit_ = new MotorPowerAction(conveyor, "motor:right:power") ;
         conveyor_close_gate_ = new MotorPowerAction(conveyor, "motor:left:power", "motor:left:delay") ;
         conveyor_left_deposit_ = new MotorPowerAction(conveyor, "motor:left:power") ; 
 
-        intake_off_action_ = new MotorPowerAction(intake, 0.0) ; //"motor:off:power"
-        intake_on_action_ = new MotorPowerAction(intake, "motor:on:power") ;
-        intake_eject_action_ = new MotorPowerAction(intake, "motor:eject:power") ;
+        intake_off_action_ = new IntakePowerAction(logger_, intake, "motor:lower:off:power", "motor:upper:off:power") ;
+        intake_on_action_ = new IntakePowerAction(logger_, intake, "motor:lower:on:power", "motor:upper:on:power") ;
+        intake_eject_action_ = new IntakePowerAction(logger_, intake, "motor:lower:eject:power", "motor:upper:eject:power") ;
 
         // TODO: water actions in OI
         // water_squirt_action_ = ...

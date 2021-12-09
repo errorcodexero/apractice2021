@@ -152,20 +152,37 @@
         },
         "intake" : {
             "motor" : {
-                "on" : {
-                    "power" : 1.0
+                "lower" : {
+                    "on" : {
+                        "power" : 1.0
+                    },
+                    "off" : {
+                        "power" : 0.0
+                    },
+                    "eject" : {
+                        "power" : -1.0
+                    }
                 },
-                "off" : {
-                    "power" : 0.0
-                },
-                "eject" : {
-                    "power" : -1.0
+                "upper" : {
+                    "on" : {
+                        "power" : 1.0
+                    },
+                    "off" : {
+                        "power" : 0.0
+                    },
+                    "eject" : {
+                        "power" : -1.0
+                    }
                 }
             },
             "hw" : {
-                "motors" : {
+                "lowermotor" : {
                     "type" : "talon_srx",
                     "canid" : 7
+                },
+                "uppermotor" : {
+                    "type" : "talon_srx",
+                    "canid" : 9
                 }
             }
         },

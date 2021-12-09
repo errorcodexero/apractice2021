@@ -5,8 +5,10 @@ import org.xero1425.base.actions.DelayAction;
 import org.xero1425.base.motorsubsystem.MotorPowerAction;
 import org.xero1425.base.tankdrive.TankDrivePathFollowerAction;
 import org.xero1425.base.tankdrive.TankDriveSubsystem;
+import org.xero1425.misc.MessageLogger;
 
 import frc.robot.conveyor.ConveyorSubsystem;
+import frc.robot.intake.IntakePowerAction;
 import frc.robot.intake.IntakeSubsystem;
 
 public class TwoToteAuto extends BunnyBotAutoMode {
@@ -15,18 +17,18 @@ public class TwoToteAuto extends BunnyBotAutoMode {
     private Action conveyor_close_gate_action_ ; 
     private Action conveyor_off_action_ ; 
 
-    public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay, String delay_close_gate) 
+    public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay, String delay_close_gate, MessageLogger logger) 
             throws Exception {
         super(ctrl, "TwoToteAuto") ;
 
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ; 
         TankDriveSubsystem db = getBunnyBotSubsystem().getTankDrive() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
-        MotorPowerAction intake_on_act_ = new MotorPowerAction(intake, "motor:on:power") ;
+        IntakePowerAction intake_on_act_ = new IntakePowerAction(logger, intake, "motor:lower:on:power", "motor:upper:on:power") ;
 
-        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "motor:right:power");
+        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "motor:right:power") ;
         conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "motor:left:power", "motor:left:delay") ;
-        conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0);
+        conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0) ;
 
         //turn on intake
         addSubActionPair(intake, intake_on_act_, false) ;

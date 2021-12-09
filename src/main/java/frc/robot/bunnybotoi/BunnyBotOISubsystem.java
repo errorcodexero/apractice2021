@@ -41,7 +41,7 @@ public class BunnyBotOISubsystem extends OISubsystem {
 
         if (index != -1) {
             try {
-                oi_ = new BunnyBotOIDevice(this, "OI", index) ;
+                oi_ = new BunnyBotOIDevice(this, "OI", index, logger) ;
                 addHIDDevice(oi_) ;
             }
             catch(Exception ex) {
