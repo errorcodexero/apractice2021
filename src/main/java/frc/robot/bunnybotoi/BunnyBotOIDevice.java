@@ -13,6 +13,7 @@ import org.xero1425.misc.MissingParameterException;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
+import frc.robot.conveyor.ConveyorPowerSequenceAction;
 import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakePowerAction;
 import frc.robot.intake.IntakeSubsystem;
@@ -31,13 +32,13 @@ public class BunnyBotOIDevice extends OIPanel {
     private int automode_ ;
 
     private Action intake_off_action_ ;
+    private Action intake_collect_action_ ;
+    private Action intake_reverse_action_ ;
+
     private Action conveyor_close_gate_action_ ;
     private Action conveyor_off_action_ ;
-
-    private int conveyor_vel_axis_ ;
-    private int intake_vel_axis_ ;
-    private double conveyor_vel_value_ ;
-    private double intake_vel_value_ ;
+    private Action conveyor_dump_action_ ;
+    private Action conveyor_reverse_action_ ;
     
 
     private MessageLogger logger_ ;
@@ -49,12 +50,6 @@ public class BunnyBotOIDevice extends OIPanel {
         initializeGadgets();
 
         logger_ = logger ;
-
-        conveyor_vel_value_ = 0 ;
-        intake_vel_value_ = 0 ;
-
-        conveyor_vel_axis_ = sub.getSettingsValue("oi:axis:conveyor").getInteger() ;
-        intake_vel_axis_ = sub.getSettingsValue("oi:axis:intake").getInteger() ;
     }
 
     @Override
@@ -70,7 +65,15 @@ public class BunnyBotOIDevice extends OIPanel {
 
         conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
         conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0) ;
+        conveyor_reverse_action_ = new MotorPowerAction(conveyor, "reverse:power") ;
+
+        double [] times = { 0.2, 0.2, 1000000} ;
+        double [] powers = { 0.2, 0.4, 0.6} ;
+        conveyor_dump_action_ = new ConveyorPowerSequenceAction(logger_, conveyor, times, powers) ;
+
+        intake_collect_action_ = new IntakePowerAction(logger_, intake, "collect:lower:power", "collect:upper:power") ;
         intake_off_action_ = new IntakePowerAction(logger_, intake, 0.0, 0.0) ;
+        intake_reverse_action_ = new IntakePowerAction(logger_, intake, "reverse:lower:power", "reverse:upper:power") ;
     }
 
     private BunnyBotSubsystem getBunnyBotSubsystem() {
@@ -83,18 +86,12 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        DriverStation ds = DriverStation.getInstance() ;
-
-        double intake_cur_val = ds.getStickAxis(getIndex(), intake_vel_axis_) ;
-        double conveyor_cur_val = ds.getStickAxis(getIndex(), conveyor_vel_axis_) ;
-
         //
         // Conveyor, Intake, and water are the 2 subsystems here
         //  -- Conveyor can either be stopped, going right, or going left
         //  -- Intake can either run ON or OFF and can be set to eject mode
         //  -- Water can either be shooting or off
         // 
-
 
         /// CONVEYOR
         if (getValue(conveyor_dump_off_) == 1) {
@@ -108,9 +105,7 @@ public class BunnyBotOIDevice extends OIPanel {
             // If we are here, the conveyor right-deposit button was pressed, so we assign the action
             // * Right always takes priority over left
             //
-            MotorPowerAction act = new MotorPowerAction(conveyor, conveyor_cur_val) ;
-            seq.addSubActionPair(conveyor, act, false) ;
-            conveyor_vel_value_ = conveyor_cur_val ;
+            seq.addSubActionPair(conveyor, conveyor_dump_action_, false) ;
         }
         else if (getValue(conveyor_reverse_off_) == 1)
         {
@@ -118,15 +113,7 @@ public class BunnyBotOIDevice extends OIPanel {
         }
         else if (getValue(conveyor_reverse_on_) == 1) 
         {
-            MotorPowerAction act = new MotorPowerAction(conveyor, -conveyor_cur_val) ;
-            seq.addSubActionPair(conveyor, act, false) ;
-            conveyor_vel_value_ = conveyor_cur_val ;
-        }
-        else if (Math.abs(conveyor_cur_val - conveyor_vel_value_) > 0.05 && conveyor.isRunning()) {
-            double sign = Math.signum(conveyor.getPower()) ;
-            MotorPowerAction act = new MotorPowerAction(conveyor, sign * conveyor_cur_val) ;
-            seq.addSubActionPair(conveyor, act, false) ;
-            conveyor_vel_value_ = conveyor_cur_val ;
+            seq.addSubActionPair(conveyor, conveyor_reverse_action_, false) ;
         }
 
         /// INTAKE
@@ -137,15 +124,10 @@ public class BunnyBotOIDevice extends OIPanel {
             seq.addSubActionPair(intake, intake_off_action_, false) ;
         }
         else if (getValue(intake_on_) == 1) {
-            double vel = (getValue(intake_dir_) == 1) ? intake_cur_val : -intake_cur_val ;
-            IntakePowerAction act = new IntakePowerAction(logger_, intake, vel, vel) ;
-            seq.addSubActionPair(intake, act, false);
-            intake_vel_value_ = intake_cur_val ;
-        }  
-        else if (Math.abs(intake_cur_val - intake_vel_value_) > 0.05 && intake.isRunning()) {
-            IntakePowerAction act = new IntakePowerAction(logger_, intake, intake_cur_val, intake_cur_val) ;
-            seq.addSubActionPair(intake, act, false);            
-            intake_vel_value_ = intake_cur_val ;
+            if (getValue(intake_dir_) == 1)
+                seq.addSubActionPair(intake, intake_collect_action_, false);
+            else
+                seq.addSubActionPair(intake, intake_reverse_action_, false);
         }
     }
 
@@ -165,7 +147,7 @@ public class BunnyBotOIDevice extends OIPanel {
         intake_off_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
 
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_dir").getInteger() ;
-        intake_dir_ = mapButton(num, OIPanelButton.ButtonType.Level) ;
+        intake_dir_ = mapButton(num, OIPanelButton.ButtonType.LevelInv) ;
         
         // // conveyor right and left deploy  + stop buttons
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_dump_on").getInteger() ;

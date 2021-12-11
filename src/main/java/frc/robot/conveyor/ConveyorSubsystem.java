@@ -19,5 +19,9 @@ public class ConveyorSubsystem extends MotorSubsystem {
         setDefaultAction(new MotorPowerAction(this, 0.0));
     }
 
+    public void setConveyorPower(double p) {
+        setPower(p) ;
+    }
+
 }
 

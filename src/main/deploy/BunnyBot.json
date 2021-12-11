@@ -155,12 +155,20 @@
             }
         },
         "intake" : {
-            "on" : {
+            "collect" : {
                 "upper" : {
                     "power" : 1.0
                 },
                 "lower" : {
                     "power" : 1.0
+                }
+            },
+            "reverse" : {
+                "upper" : {
+                    "power" : -1.0
+                },
+                "lower" : {
+                    "power" : -1.0
                 }
             },
             "hw" : {
@@ -178,11 +186,14 @@
         },
         "conveyor" : {
             "closegate" : {
-                "power" : 1.0,
-                "delay" : 0.5
+                "power" : -0.5,
+                "delay" : 0.2
             },
             "dump" : {
                 "power" : 1.0
+            },
+            "reverse" : {
+                "power" : -0.5
             },
             "hw" : { 
                 "motors" : {
@@ -201,9 +212,9 @@
     },
     "testmode" : {
         "enabled" : true,
-        "which" : 22,
-        "power" : 0.8,
-        "duration" : 0.5,
+        "which" : 20,
+        "power" : 0.5,
+        "duration" : 2.0,
         "distance" : 0.0,
         "name" : "Test_Curved"
     }
