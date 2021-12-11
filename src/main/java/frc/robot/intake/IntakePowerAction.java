@@ -5,10 +5,7 @@ import org.xero1425.base.motors.BadMotorRequestException;
 import org.xero1425.base.motors.MotorRequestFailedException;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MessageLogger;
-import org.xero1425.misc.MessageType;
 import org.xero1425.misc.MissingParameterException;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class IntakePowerAction extends Action {
     private IntakeSubsystem sub_;
@@ -44,7 +41,6 @@ public class IntakePowerAction extends Action {
     @Override
     public void run() throws Exception {
         super.run();
-
     }
 
     @Override

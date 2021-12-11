@@ -133,76 +133,62 @@
             },
             "oi" : {
                 "index" : 2,
+                "axis" : {
+                    "intake" : 5,
+                    "conveyor" : 6
+                },
+
                 "gadgets" : {
-                    "axes" : {
-                        "automode" : 0
+                    "axis" : {
+                        "automode" : 7
                     },
                     "buttons" : {
-                        "intake_on_mode" : 10, 
-                        "conveyor_right_mode" : 5,
-                        "conveyor_r_stop_mode" : 5,
-                        "conveyor_left_mode" : 6,
-                        "conveyor_l_stop_mode" : 6,
-                        "eject_true" : 11,
-                        "water_squirt" : 7,
-                        "water_stop" : 7
+                        "intake_on" : 1, 
+                        "intake_off" : 1,
+                        "intake_dir" : 2,
+                        "conveyor_dump_on" : 4,
+                        "conveyor_dump_off" : 4,
+                        "conveyor_reverse_on" : 3,
+                        "conveyor_reverse_off" : 3
                     }
                 }
             }
         },
         "intake" : {
-            "motor" : {
-                "lower" : {
-                    "on" : {
-                        "power" : 1.0
-                    },
-                    "off" : {
-                        "power" : 0.0
-                    },
-                    "eject" : {
-                        "power" : -1.0
-                    }
-                },
+            "on" : {
                 "upper" : {
-                    "on" : {
-                        "power" : 1.0
-                    },
-                    "off" : {
-                        "power" : 0.0
-                    },
-                    "eject" : {
-                        "power" : -1.0
-                    }
+                    "power" : 1.0
+                },
+                "lower" : {
+                    "power" : 1.0
                 }
             },
             "hw" : {
                 "lowermotor" : {
                     "type" : "talon_srx",
-                    "canid" : 7
+                    "canid" : 8,
+                    "inverted" : true
                 },
                 "uppermotor" : {
                     "type" : "talon_srx",
-                    "canid" : 9
+                    "canid" : 9,
+                    "inverted" : true
                 }
             }
         },
         "conveyor" : {
-            "motor" : {
-                "left" : {
-                    "power" : -1.0,
-                    "delay" : 2.0
-                },
-                "off" : {
-                    "power" : 0.0
-                },
-                "right" : {
-                    "power" : 1.0
-                }
+            "closegate" : {
+                "power" : 1.0,
+                "delay" : 0.5
+            },
+            "dump" : {
+                "power" : 1.0
             },
             "hw" : { 
                 "motors" : {
                     "type" : "talon_srx",
-                    "canid" : 8
+                    "canid" : 10,
+                    "inverted" : true
                 }
             }
         }
@@ -215,9 +201,9 @@
     },
     "testmode" : {
         "enabled" : true,
-        "which" : 4,
-        "power" : 0.2,
-        "duration" : 5.0,
+        "which" : 22,
+        "power" : 0.8,
+        "duration" : 0.5,
         "distance" : 0.0,
         "name" : "Test_Curved"
     }

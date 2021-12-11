@@ -15,7 +15,6 @@ public class TwoToteAuto extends BunnyBotAutoMode {
 
     private Action conveyor_deploy_right_action_ ;
     private Action conveyor_close_gate_action_ ; 
-    private Action conveyor_off_action_ ; 
 
     public TwoToteAuto(BunnyBotAutoController ctrl, String name, String path1, String path2, String delay, String delay_close_gate, MessageLogger logger) 
             throws Exception {
@@ -24,11 +23,10 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ; 
         TankDriveSubsystem db = getBunnyBotSubsystem().getTankDrive() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
-        IntakePowerAction intake_on_act_ = new IntakePowerAction(logger, intake, "motor:lower:on:power", "motor:upper:on:power") ;
+        IntakePowerAction intake_on_act_ = new IntakePowerAction(logger, intake, "on:lower:power", "on:upper:power") ;
 
-        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "motor:right:power") ;
-        conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "motor:left:power", "motor:left:delay") ;
-        conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0) ;
+        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "dump:power") ;
+        conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
 
         //turn on intake
         addSubActionPair(intake, intake_on_act_, false) ;
@@ -38,7 +36,6 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         addSubActionPair(conveyor, conveyor_deploy_right_action_, false) ;
         addAction(new DelayAction(getAutoController().getRobot(), delay)) ;
         addSubActionPair(conveyor, conveyor_close_gate_action_, false) ;
-        addSubActionPair(conveyor, conveyor_off_action_, false) ;
 
         //drive 2nd path
         addSubActionPair(db, new TankDrivePathFollowerAction(db, path2, false), true) ;
@@ -46,8 +43,5 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         addSubActionPair(conveyor, conveyor_deploy_right_action_, false) ;
         addAction(new DelayAction(getAutoController().getRobot(), delay)) ;
         addSubActionPair(conveyor, conveyor_close_gate_action_, false) ;
-        addSubActionPair(conveyor, conveyor_off_action_, false) ;
-
-        
     }
 }
