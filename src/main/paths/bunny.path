@@ -220,7 +220,7 @@
                     "maxacceleration": 90,
                     "maxcentripetal": 100,
                     "maxjerk": 900,
-                    "maxvelocity": 60,
+                    "maxvelocity": 50,
                     "name": "Path1",
                     "points": [
                         {
@@ -234,9 +234,9 @@
                             "y": 29.149078016089334
                         },
                         {
-                            "heading": 77.00538320808344,
-                            "x": 195.9917377348608,
-                            "y": 117.81992237338665
+                            "heading": 86.82016988013571,
+                            "x": 178.75519144764235,
+                            "y": 116.89626774466481
                         }
                     ],
                     "startangle": 0,
@@ -253,20 +253,20 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 180,
+                    "maxacceleration": 50,
                     "maxcentripetal": 100,
                     "maxjerk": 1800,
-                    "maxvelocity": 180,
+                    "maxvelocity": 50,
                     "name": "Path2",
                     "points": [
                         {
-                            "heading": 90,
-                            "x": 182.137,
+                            "heading": 86.82019999999999,
+                            "x": 182.755,
                             "y": 116.896
                         },
                         {
-                            "heading": 75.96375653207352,
-                            "x": 203.3809747646356,
+                            "heading": 90,
+                            "x": 183.83153681892048,
                             "y": 236.97136947850493
                         }
                     ],

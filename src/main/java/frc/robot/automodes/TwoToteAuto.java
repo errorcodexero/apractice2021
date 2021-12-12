@@ -17,7 +17,6 @@ import frc.robot.intake.IntakeSubsystem;
 
 public class TwoToteAuto extends BunnyBotAutoMode {
 
-    private Action conveyor_deploy_right_action_ ;
     private Action conveyor_close_gate_action_ ; 
 
     public TwoToteAuto(BunnyBotAutoController ctrl, String name, boolean onetote, String path1, String path2, String delay, String delay_close_gate) 
@@ -30,8 +29,9 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         TankDriveSubsystem db = getBunnyBotSubsystem().getTankDrive() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        conveyor_deploy_right_action_ = new MotorPowerAction(conveyor, "dump:power") ;
-        conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
+        double [] times = new double[] { 0.2, 0.2, 1.2} ;
+        double [] powers = new double[] { 0.2, 0.4, 0.75} ;
+        conveyor_close_gate_action_ = new MotorPowerSequenceAction(conveyor, times, powers);
 
         //
         // Drive the first path
@@ -41,9 +41,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         //
         // Dump in 1st tote
         //
-        double [] times = new double[] { 0.2, 0.2, 1.2} ;
-        double [] powers = new double[] { 0.2, 0.4, 0.75} ;
-        addSubActionPair(conveyor, new MotorPowerSequenceAction(conveyor, times, powers), true) ;
+        addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
 
         if (onetote) {
             addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;            
@@ -72,7 +70,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
             //
             // Dump in 2nd tote
             //
-            addSubActionPair(conveyor, conveyor_deploy_right_action_, false) ;
+            addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
         }
     }
 }
