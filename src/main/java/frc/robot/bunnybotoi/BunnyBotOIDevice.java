@@ -4,6 +4,7 @@ import org.xero1425.base.actions.Action;
 import org.xero1425.base.actions.InvalidActionRequest;
 import org.xero1425.base.actions.SequenceAction;
 import org.xero1425.base.motorsubsystem.MotorPowerAction;
+import org.xero1425.base.motorsubsystem.MotorPowerSequenceAction;
 import org.xero1425.base.oi.OISubsystem;
 import org.xero1425.base.oi.OIPanel;
 import org.xero1425.base.oi.OIPanelButton;
@@ -13,9 +14,9 @@ import org.xero1425.misc.MissingParameterException;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
-import frc.robot.conveyor.ConveyorPowerSequenceAction;
 import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakePowerAction;
+import frc.robot.intake.IntakePowerSequenceAction;
 import frc.robot.intake.IntakeSubsystem;
 
 public class BunnyBotOIDevice extends OIPanel {
@@ -40,6 +41,7 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_dump_action_ ;
     private Action conveyor_reverse_action_ ;
     
+    private boolean first ;
 
     private MessageLogger logger_ ;
     
@@ -50,10 +52,22 @@ public class BunnyBotOIDevice extends OIPanel {
         initializeGadgets();
 
         logger_ = logger ;
+        first = true ;
     }
 
     @Override
     public int getAutoModeSelector() {
+        
+        DriverStation ds = DriverStation.getInstance() ;
+        String debug = "Axis:" ;
+        for(int i = 6 ; i < 7 ; i++)
+        {
+            double val = ds.getStickAxis(getIndex(), i) ;
+            debug += " " ;
+            debug += Double.toString(val) ;
+        }
+        System.out.println(debug) ;
+
         int v = getValue(automode_) ;
         return v ;
     }
@@ -63,15 +77,20 @@ public class BunnyBotOIDevice extends OIPanel {
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
 
-        conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
+        double [] ctimes = { 0.2, 1000000} ;
+        double [] cpowers = { -0.5, -0.1} ;
+        conveyor_close_gate_action_ = new MotorPowerSequenceAction(conveyor, ctimes, cpowers) ;
         conveyor_off_action_ = new MotorPowerAction(conveyor, 0.0) ;
         conveyor_reverse_action_ = new MotorPowerAction(conveyor, "reverse:power") ;
 
         double [] times = { 0.2, 0.2, 1000000} ;
         double [] powers = { 0.2, 0.4, 0.6} ;
-        conveyor_dump_action_ = new ConveyorPowerSequenceAction(logger_, conveyor, times, powers) ;
+        conveyor_dump_action_ = new MotorPowerSequenceAction(conveyor, times, powers) ;
 
-        intake_collect_action_ = new IntakePowerAction(logger_, intake, "collect:lower:power", "collect:upper:power") ;
+        double [] itimes = { 0.2, 0.2, 10000000} ;
+        double [] lpowers = { 0.2, 0.4, 0.6 } ;
+        double [] upowers = { 0.2, 0.4, 0.6} ;
+        intake_collect_action_ = new IntakePowerSequenceAction(intake, itimes, lpowers, upowers) ;
         intake_off_action_ = new IntakePowerAction(logger_, intake, 0.0, 0.0) ;
         intake_reverse_action_ = new IntakePowerAction(logger_, intake, "reverse:lower:power", "reverse:upper:power") ;
     }
@@ -93,8 +112,14 @@ public class BunnyBotOIDevice extends OIPanel {
         //  -- Water can either be shooting or off
         // 
 
+
         /// CONVEYOR
-        if (getValue(conveyor_dump_off_) == 1) {
+        if (first)
+        {
+            seq.addSubActionPair(conveyor, conveyor_close_gate_action_, false) ;
+            first = false ;
+        }
+        else if (getValue(conveyor_dump_off_) == 1) {
             //
             // So, first priority, if the conveyor_right button was released, we stop the conveyor
             //            

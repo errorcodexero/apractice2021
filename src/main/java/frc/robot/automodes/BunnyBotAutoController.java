@@ -25,15 +25,17 @@ public class BunnyBotAutoController extends AutoController {
 
         try {
             test_mode_ = new BunnyBotTestAutoMode(this);
-            modes_[0] = new TwoToteAuto(this, "BunnyBotAutoModeClose", "AutoMode_Path1", "AutoMode_Path2", 
-                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate", logger) ;
-            modes_[1] = new TwoToteAuto(this, "BunnyBotAutoModeFar", "AutoMode_Path3", "AutoMode_Path4", 
-                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate", logger) ;
-            modes_[2] = new NopAuto(this, "Nop-2") ;
-            modes_[3] = new NopAuto(this, "Nop-3") ;
-            modes_[4] = new NopAuto(this, "Nop-4") ;
-            modes_[5] = new NopAuto(this, "Nop-5") ;
-            modes_[6] = new NopAuto(this, "Nop-6") ;
+            modes_[0] = new TwoToteAuto(this, "CloseTwo", false, "AutoMode_Path1", "AutoMode_Path2", 
+                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate") ;
+            modes_[1] = new NopAuto(this, "Nop-1") ;
+            modes_[2] = new TwoToteAuto(this, "FarTwo", false, "AutoMode_Path3", "AutoMode_Path4", 
+                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate") ;
+            modes_[3] = new NopAuto(this, "Nop-3") ;                    
+            modes_[4] = new TwoToteAuto(this, "CloseOne", true, "AutoMode_Path1", "AutoMode_Path2", 
+                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate") ;
+            modes_[5] = new NopAuto(this, "Nop-5") ;                    
+            modes_[6] = new TwoToteAuto(this, "FarOne", true, "AutoMode_Path3", "AutoMode_Path4", 
+                    "automodes:twototeauto:delay", "automodes:twototeauto:delay_close_gate") ;
             modes_[7] = new NopAuto(this, "Nop-7") ;
             modes_[8] = new NopAuto(this, "Nop-8") ;
             modes_[9] = new NopAuto(this, "Nop-9") ;                                                                                    

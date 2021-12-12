@@ -48,6 +48,10 @@ public class BunnyBotTestAutoMode extends TestAutoMode {
                 addSubActionPair(db, new TankDrivePowerAction(db, 0.0, getPower(), getDuration()), true);
                 break;
 
+            case 5:         // Run the path follower to follow a named path
+                addSubActionPair(db, new TankDrivePathFollowerAction(db, getNameParam(), false), true) ;
+                break ;                
+
             case 10:    // Run lower roller
                 addSubActionPair(intake, new IntakePowerAction(logger, intake, getPower(), 0), true);
                 addAction(new DelayAction(ctrl.getRobot(), getDuration())) ;

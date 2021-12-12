@@ -14,10 +14,10 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 120,
+                    "maxacceleration": 80,
                     "maxcentripetal": 100000,
-                    "maxjerk": 1200,
-                    "maxvelocity": 120,
+                    "maxjerk": 800,
+                    "maxvelocity": 80,
                     "name": "Straight",
                     "points": [
                         {
@@ -45,10 +45,10 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 80,
+                    "maxacceleration": 60,
                     "maxcentripetal": 100000,
-                    "maxjerk": 1200,
-                    "maxvelocity": 80,
+                    "maxjerk": 800,
+                    "maxvelocity": 70,
                     "name": "Curved",
                     "points": [
                         {
@@ -217,26 +217,26 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 180,
+                    "maxacceleration": 90,
                     "maxcentripetal": 100,
-                    "maxjerk": 1800,
-                    "maxvelocity": 180,
+                    "maxjerk": 900,
+                    "maxvelocity": 60,
                     "name": "Path1",
                     "points": [
                         {
                             "heading": 0,
-                            "x": 20.52631578947368,
-                            "y": 18.15789473684211
+                            "x": 14.031775876656951,
+                            "y": 23.60715024375827
                         },
                         {
                             "heading": 0,
-                            "x": 73.42105263157893,
-                            "y": 18.15789473684211
+                            "x": 95.3133832041795,
+                            "y": 29.149078016089334
                         },
                         {
                             "heading": 90,
-                            "x": 118.42105263157893,
-                            "y": 62.36842105263156
+                            "x": 182.1369183040331,
+                            "y": 116.89626774466481
                         }
                     ],
                     "startangle": 0,
@@ -261,13 +261,13 @@
                     "points": [
                         {
                             "heading": 90,
-                            "x": 118.421,
-                            "y": 62.3684
+                            "x": 182.137,
+                            "y": 116.896
                         },
                         {
-                            "heading": 90,
-                            "x": 118.4,
-                            "y": 110.52631578947367
+                            "heading": 75.96375653207352,
+                            "x": 203.3809747646356,
+                            "y": 236.97136947850493
                         }
                     ],
                     "startangle": 0,
@@ -344,5 +344,5 @@
             ]
         }
     ],
-    "outdir": "C:/cygwin/home/Aditi/bunny21/src/main/paths"
+    "outdir": "C:/cygwin64/home/bwg/robottools/bunnybot2021/src/main/deploy/paths"
 }

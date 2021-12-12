@@ -9,7 +9,7 @@ public class WaterSquirtUpAction extends Action {
     private WaterSubsystem sub_ ;
     double duration_ ;
     boolean isTimed_ = false ;
-    private double start_ ;
+    // private double start_ ;
 
     public WaterSquirtUpAction(WaterSubsystem sub, MessageLogger logger) {
         super(logger) ;
@@ -62,7 +62,6 @@ public class WaterSquirtUpAction extends Action {
 
     @Override
     public String toString(int indent) {
-        // TODO Auto-generated method stub
         return null ;
     }
 
