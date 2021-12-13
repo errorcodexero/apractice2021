@@ -165,6 +165,7 @@ public class BunnyBotOIDevice extends OIPanel {
         automode_ = mapAxisScale(num, map) ;
        
         // intake on/off switch
+        // TODO: see if after switched the button/toggles for OI in params, whether lvlinvert/ l2h & h2l still work or need to be switched
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_on").getInteger() ;
         intake_on_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
 
