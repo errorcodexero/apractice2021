@@ -143,9 +143,9 @@
                         "automode" : 6
                     },
                     "buttons" : {
-                        "intake_on" : 1, 
-                        "intake_off" : 1,
-                        "intake_dir" : 2,
+                        "intake_reverse_on" : 1, 
+                        "intake_reverse_off" : 1,
+                        "intake_on" : 2,
                         "conveyor_dump_on" : 4,
                         "conveyor_dump_off" : 4,
                         "conveyor_reverse_on" : 3,

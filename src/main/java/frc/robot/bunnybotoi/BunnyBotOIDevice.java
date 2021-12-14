@@ -25,9 +25,9 @@ public class BunnyBotOIDevice extends OIPanel {
 
     private Gamepad gamepad_ ;
 
-    private int intake_dir_ ;
     private int intake_on_ ;
-    private int intake_off_ ;
+    private int intake_reverse_on_ ;
+    private int intake_reverse_off_ ;
 
     private int conveyor_dump_on_ ;
     private int conveyor_dump_off_ ;
@@ -156,19 +156,23 @@ public class BunnyBotOIDevice extends OIPanel {
         }
 
         /// INTAKE
-        //
-        // This is a new if because the intake is controlled independently of the GPM.
-        //
-        if (getValue(intake_off_) == 1) {
-            seq.addSubActionPair(intake, intake_off_action_, false) ;
+        if (getValue(intake_on_) == 0) {  
+            // Intake should be off
+            // Turn it off if it's on
+            if (intake.isRunning()) {
+                seq.addSubActionPair(intake, intake_off_action_, false);
+            } 
         }
-        else if (getValue(intake_on_) == 1) {
-            if (getValue(intake_dir_) == 1)
-                seq.addSubActionPair(intake, intake_collect_action_, false);
-            else
+        else {  
+            // Intake should be on
+            if (getValue(intake_reverse_on_) == 1) {  // Just clicked reverse
                 seq.addSubActionPair(intake, intake_reverse_action_, false);
+            }
+            else if (getValue(intake_reverse_off_) == 1 || !intake.isRunning()) {  // Just unclicked reverse, or was off
+                seq.addSubActionPair(intake, intake_collect_action_, false);
+            }
         }
-
+        
         /// WATER
         if (gamepad_ != null) {
             if (gamepad_.isRTriggerPressed()) {
@@ -193,14 +197,14 @@ public class BunnyBotOIDevice extends OIPanel {
         automode_ = mapAxisScale(num, map) ;
        
         // intake on/off switch
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_reverse_on").getInteger() ;
+        intake_reverse_on_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
+
+        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_reverse_off").getInteger() ;
+        intake_reverse_off_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
+
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_on").getInteger() ;
-        intake_on_ = mapButton(num, OIPanelButton.ButtonType.LowToHigh) ;
-
-        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_off").getInteger() ;
-        intake_off_ = mapButton(num, OIPanelButton.ButtonType.HighToLow) ;
-
-        num = getSubsystem().getSettingsValue("oi:gadgets:buttons:intake_dir").getInteger() ;
-        intake_dir_ = mapButton(num, OIPanelButton.ButtonType.LevelInv) ;
+        intake_on_ = mapButton(num, OIPanelButton.ButtonType.LevelInv) ;
         
         // // conveyor right and left deploy  + stop buttons
         num = getSubsystem().getSettingsValue("oi:gadgets:buttons:conveyor_dump_on").getInteger() ;
