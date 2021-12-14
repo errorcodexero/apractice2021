@@ -17,10 +17,6 @@ public class WaterSubsystem extends MotorSubsystem {
     public void postHWInit() {
         setDefaultAction(new MotorPowerAction(this, 0.0));
     }
-
-    public void setWaterPower(double p) {
-        setPower(p) ;
-    }
-
+    
 }
 

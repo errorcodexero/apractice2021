@@ -205,11 +205,11 @@
         },
         "water" : {
             "automode" : {
-                "power" : 1.0,
+                "power" : 0.3,
                 "delay" : 1.0
             },
             "teleop" : {
-                "power" : 1.0,
+                "power" : 0.7,
                 "delay" : 1.0
             },
             "hw" : { 
