@@ -8,6 +8,7 @@ import org.xero1425.base.motorsubsystem.MotorPowerSequenceAction;
 import org.xero1425.base.oi.OISubsystem;
 import org.xero1425.base.oi.OIPanel;
 import org.xero1425.base.oi.OIPanelButton;
+import org.xero1425.base.oi.Gamepad;
 import org.xero1425.misc.BadParameterTypeException;
 import org.xero1425.misc.MessageLogger;
 import org.xero1425.misc.MissingParameterException;
@@ -18,8 +19,11 @@ import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakePowerAction;
 import frc.robot.intake.IntakePowerSequenceAction;
 import frc.robot.intake.IntakeSubsystem;
+import frc.robot.water.WaterSubsystem;
 
 public class BunnyBotOIDevice extends OIPanel {
+
+    private Gamepad gamepad_ ;
 
     private int intake_dir_ ;
     private int intake_on_ ;
@@ -41,17 +45,22 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_dump_action_ ;
     private Action conveyor_reverse_action_ ;
     
+    private Action water_on_action_ ;
+    private Action water_off_action_ ;
+
     private boolean first ;
 
     private MessageLogger logger_ ;
     
-    public BunnyBotOIDevice(OISubsystem sub, String name, int index, MessageLogger logger)
+    public BunnyBotOIDevice(OISubsystem sub, String name, int index, MessageLogger logger, Gamepad gamepad)
             throws BadParameterTypeException, MissingParameterException {
         super(sub, name, index) ;
 
+        gamepad_ = gamepad ;
+        logger_ = logger ;
+    
         initializeGadgets();
 
-        logger_ = logger ;
         first = true ;
     }
 
@@ -76,6 +85,7 @@ public class BunnyBotOIDevice extends OIPanel {
 
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
+        WaterSubsystem water = getBunnyBotSubsystem().getWater() ;
 
         double [] ctimes = { 0.2, 1000000} ;
         double [] cpowers = { -0.5, -0.1} ;
@@ -93,6 +103,9 @@ public class BunnyBotOIDevice extends OIPanel {
         intake_collect_action_ = new IntakePowerSequenceAction(intake, itimes, lpowers, upowers) ;
         intake_off_action_ = new IntakePowerAction(logger_, intake, 0.0, 0.0) ;
         intake_reverse_action_ = new IntakePowerAction(logger_, intake, "reverse:lower:power", "reverse:upper:power") ;
+
+        water_on_action_ = new MotorPowerAction(water, "teleop:power") ;
+        water_off_action_ = new MotorPowerAction(water, 0.0) ;
     }
 
     private BunnyBotSubsystem getBunnyBotSubsystem() {
@@ -104,6 +117,7 @@ public class BunnyBotOIDevice extends OIPanel {
         
         ConveyorSubsystem conveyor = getBunnyBotSubsystem().getConveyorSubsystem() ;
         IntakeSubsystem intake = getBunnyBotSubsystem().getIntake() ;
+        WaterSubsystem water = getBunnyBotSubsystem().getWater() ;
 
         //
         // Conveyor, Intake, and water are the 2 subsystems here
@@ -153,6 +167,20 @@ public class BunnyBotOIDevice extends OIPanel {
                 seq.addSubActionPair(intake, intake_collect_action_, false);
             else
                 seq.addSubActionPair(intake, intake_reverse_action_, false);
+        }
+
+        /// WATER
+        if (gamepad_ != null) {
+            if (gamepad_.isRTriggerPressed()) {
+                if (!water.isRunning()) {
+                    seq.addSubActionPair(water, water_on_action_, false);
+                }
+            }
+            else {
+                if (water.isRunning()) {
+                    seq.addSubActionPair(water, water_off_action_, false);
+                }            
+            }
         }
     }
 
