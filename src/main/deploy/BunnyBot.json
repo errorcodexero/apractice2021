@@ -27,18 +27,18 @@
                 "left" : {
                     "ka" : 0,
                     "kv" : 0.009638554,
-                    "kp" : 0.0018,
+                    "kp" : 0.005, 
                     "kd" : 0.0
                 },
                 "right" : {
                     "ka" : 0,
                     "kv" : 0.009638554,
-                    "kp" : 0.0018,
+                    "kp" : 0.005,
                     "kd" : 0.0
                 }
             }, 
             "angle_correction" : {
-                "kp" : 0.0,
+                "kp" : 0.04,
                 "ki" : 0.0,
                 "kd" : 0.0,
                 "kf" : 0.0,
@@ -86,8 +86,8 @@
                         }                        
                     },
                     "encoders" : {
-                        "1" : 10,
-                        "2" : 11
+                        "1" : 13,
+                        "2" : 12
                     }
                 },
                 "right" : {
@@ -107,8 +107,8 @@
                         "inverted" : true                        
                     },
                     "encoders" : {
-                        "1" : 13,
-                        "2" : 12
+                        "1" : 10,
+                        "2" : 11
                     }
                 }
             }
@@ -228,10 +228,10 @@
     },
     "testmode" : {
         "enabled" : false,
-        "which" : 5,
-        "power" : 0.9,
-        "duration" : 3.0,
+        "which" : 1,
+        "power" : 0.4,
+        "duration" : 5.0,
         "distance" : 0.0,
-        "name" : "AutoMode_Path1"
+        "name" : "Test_Curved"
     }
 }

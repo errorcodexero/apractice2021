@@ -14,10 +14,10 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 80,
+                    "maxacceleration": 40,
                     "maxcentripetal": 100000,
                     "maxjerk": 800,
-                    "maxvelocity": 80,
+                    "maxvelocity": 40,
                     "name": "Straight",
                     "points": [
                         {
@@ -45,10 +45,10 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 60,
+                    "maxacceleration": 40,
                     "maxcentripetal": 100000,
                     "maxjerk": 800,
-                    "maxvelocity": 70,
+                    "maxvelocity": 40,
                     "name": "Curved",
                     "points": [
                         {
@@ -344,5 +344,5 @@
             ]
         }
     ],
-    "outdir": "C:/cygwin64/home/bwg/robottools/bunnybot2021/src/main/deploy/paths"
+    "outdir": "C:/cygwin64/home/team1425/apractice2021/src/main/deploy/paths"
 }
