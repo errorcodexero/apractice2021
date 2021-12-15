@@ -18,6 +18,7 @@ import frc.robot.water.WaterSubsystem;
 
 public class TwoToteAuto extends BunnyBotAutoMode {
 
+    private Action conveyor_deploy_right_action_ ;
     private Action conveyor_close_gate_action_ ; 
     private Action water_squirt_action_ ;
 
@@ -34,14 +35,16 @@ public class TwoToteAuto extends BunnyBotAutoMode {
 
         double [] times = new double[] { 0.2, 0.2, 1.2} ;
         double [] powers = new double[] { 0.2, 0.4, 0.75} ;
-        conveyor_close_gate_action_ = new MotorPowerSequenceAction(conveyor, times, powers);
+        conveyor_deploy_right_action_ = new MotorPowerSequenceAction(conveyor, times, powers);
+
+        conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
 
         water_squirt_action_ = new MotorPowerAction(water, "automode:power", "automode:delay") ;
 
 
         ParallelAction convnwater = new ParallelAction(logger, DonePolicy.All) ;
         // Dump in 1st tote
-        convnwater.addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
+        convnwater.addSubActionPair(conveyor, conveyor_deploy_right_action_, true) ;
         // water in 1st tote
         convnwater.addSubActionPair(water, water_squirt_action_, true) ;
     
