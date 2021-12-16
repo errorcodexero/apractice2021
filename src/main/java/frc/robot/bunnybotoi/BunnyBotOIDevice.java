@@ -45,7 +45,8 @@ public class BunnyBotOIDevice extends OIPanel {
     private Action conveyor_dump_action_ ;
     private Action conveyor_reverse_action_ ;
     
-    private Action water_on_action_ ;
+    private Action water_on_teleop_action_ ;
+    private Action water_on_auto_action_ ;
     private Action water_off_action_ ;
 
     private boolean first ;
@@ -104,7 +105,8 @@ public class BunnyBotOIDevice extends OIPanel {
         intake_off_action_ = new IntakePowerAction(logger_, intake, 0.0, 0.0) ;
         intake_reverse_action_ = new IntakePowerAction(logger_, intake, "reverse:lower:power", "reverse:upper:power") ;
 
-        water_on_action_ = new MotorPowerAction(water, "teleop:power") ;
+        water_on_teleop_action_ = new MotorPowerAction(water, "teleop:power") ;
+        water_on_auto_action_ = new MotorPowerAction(water, "automode:power") ;
         water_off_action_ = new MotorPowerAction(water, 0.0) ;
     }
 
@@ -174,10 +176,15 @@ public class BunnyBotOIDevice extends OIPanel {
         }
         
         /// WATER
-        if (gamepad_ != null) {
+        if (gamepad_ != null) {  // Warning: Depress one trigger before pressing the other. Left just for testing anyway.
             if (gamepad_.isRTriggerPressed()) {
                 if (!water.isRunning()) {
-                    seq.addSubActionPair(water, water_on_action_, false);
+                    seq.addSubActionPair(water, water_on_teleop_action_, false);
+                }
+            }
+            else if (gamepad_.isLTriggerPressed()) {
+                if (!water.isRunning()) {
+                    seq.addSubActionPair(water, water_on_auto_action_, false);
                 }
             }
             else {
