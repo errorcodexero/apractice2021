@@ -174,12 +174,12 @@
             "hw" : {
                 "lowermotor" : {
                     "type" : "talon_srx",
-                    "canid" : 8,
+                    "canid" : 9,
                     "inverted" : true
                 },
                 "uppermotor" : {
                     "type" : "talon_srx",
-                    "canid" : 9,
+                    "canid" : 8,
                     "inverted" : true
                 }
             }
