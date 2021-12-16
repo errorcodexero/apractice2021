@@ -83,7 +83,6 @@ public class TwoToteAuto extends BunnyBotAutoMode {
 
             addAction(convnwater) ;
 
-
             // //
             // // Dump in 2nd tote
             // //
