@@ -171,6 +171,9 @@
                     "power" : -1.0
                 }
             },
+            "auto" : {
+                "power" : 0.5
+            },
             "hw" : {
                 "lowermotor" : {
                     "type" : "talon_srx",

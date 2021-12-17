@@ -81,7 +81,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
             //
             sa = new SequenceAction(logger) ;
             sa.addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
-            sa.addSubActionPair(intake, new IntakePowerAction(logger, intake, 0.0, 0.5), false);
+            sa.addSubActionPair(intake, new IntakePowerAction(logger, intake, "auto:power", "auto:power"), false);
             sa.addAction(new DelayAction(ctrl.getRobot(), 1.0)) ;
             sa.addSubActionPair(intake, new IntakePowerAction(logger, intake, 0.0, 0.0), false);
 
