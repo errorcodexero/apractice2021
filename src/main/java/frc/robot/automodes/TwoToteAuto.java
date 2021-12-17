@@ -21,6 +21,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
     private Action conveyor_deploy_right_action_ ;
     private Action conveyor_close_gate_action_ ; 
     private Action water_squirt_action_ ;
+    private Action water_prime_action_ ;
 
     public TwoToteAuto(BunnyBotAutoController ctrl, String name, boolean onetote, String path1, String path2, String delay, String delay_close_gate) 
             throws Exception {
@@ -40,21 +41,29 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         conveyor_close_gate_action_ = new MotorPowerAction(conveyor, "closegate:power", "closegate:delay") ;
 
         water_squirt_action_ = new MotorPowerAction(water, "automode:power", "automode:delay") ;
+        water_prime_action_ = new MotorPowerAction(water, "prime:power", "prime:delay") ;
+       
+        
+        //
+        // Drive the first path
+        //
+        
+        ParallelAction primewater = new ParallelAction(logger, DonePolicy.All) ;
+        // first path
+        primewater.addSubActionPair(db, new TankDrivePathFollowerAction(db, path1, false), true) ;
+        // prime water by starting pump
+        primewater.addSubActionPair(water, water_prime_action_, true) ;
+        addAction(primewater) ;
 
+        //
+        //first tote----
+        //
 
         ParallelAction convnwater = new ParallelAction(logger, DonePolicy.All) ;
         // Dump in 1st tote
         convnwater.addSubActionPair(conveyor, conveyor_deploy_right_action_, true) ;
         // water in 1st tote
         convnwater.addSubActionPair(water, water_squirt_action_, true) ;
-    
-
-
-        //
-        // Drive the first path
-        //
-        addSubActionPair(db, new TankDrivePathFollowerAction(db, path1, false), true) ;
-        
         addAction(convnwater) ;
 
         if (onetote) {
