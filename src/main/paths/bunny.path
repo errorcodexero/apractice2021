@@ -225,8 +225,8 @@
                     "points": [
                         {
                             "heading": 0,
-                            "x": 14.031775876656951,
-                            "y": 23.60715024375827
+                            "x": 13.973574251835103,
+                            "y": 28.558780350084703
                         },
                         {
                             "heading": 0,
@@ -284,26 +284,26 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 180,
+                    "maxacceleration": 90,
                     "maxcentripetal": 100,
                     "maxjerk": 1800,
-                    "maxvelocity": 180,
+                    "maxvelocity": 50,
                     "name": "Path3",
                     "points": [
                         {
                             "heading": 0,
                             "x": 18.947368421052627,
-                            "y": 160
+                            "y": 292
                         },
                         {
                             "heading": 0,
-                            "x": 75,
-                            "y": 160
+                            "x": 133.69079616036134,
+                            "y": 290.5142857142856
                         },
                         {
                             "heading": -90,
-                            "x": 154.73684210526312,
-                            "y": 119.21052631578945
+                            "x": 252,
+                            "y": 223.2
                         }
                     ],
                     "startangle": 0,
@@ -320,21 +320,21 @@
                     ],
                     "markers": [
                     ],
-                    "maxacceleration": 180,
+                    "maxacceleration": 50,
                     "maxcentripetal": 100,
                     "maxjerk": 1800,
-                    "maxvelocity": 180,
+                    "maxvelocity": 50,
                     "name": "Path4",
                     "points": [
                         {
                             "heading": -90,
-                            "x": 154.737,
-                            "y": 119.211
+                            "x": 252,
+                            "y": 223.2
                         },
                         {
                             "heading": -90,
-                            "x": 154.7,
-                            "y": 63.15789473684208
+                            "x": 252,
+                            "y": 97
                         }
                     ],
                     "startangle": 0,

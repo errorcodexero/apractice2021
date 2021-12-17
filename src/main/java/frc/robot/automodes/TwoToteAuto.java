@@ -53,6 +53,8 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         primewater.addSubActionPair(db, new TankDrivePathFollowerAction(db, path1, false), true) ;
         // prime water by starting pump
         primewater.addSubActionPair(water, water_prime_action_, true) ;
+        // close gate
+        primewater.addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
         addAction(primewater) ;
 
         //
