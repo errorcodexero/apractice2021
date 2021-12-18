@@ -62,6 +62,11 @@ public class TwoToteAuto extends BunnyBotAutoMode {
 
         addAction(primewater) ;
 
+        // if it's one tote, then turn off the intake
+        if(onetote) {
+            addSubActionPair(intake, new IntakePowerAction(logger, intake, 0.0, 0.0), false);
+        }
+
         //
         //first tote----
         //
