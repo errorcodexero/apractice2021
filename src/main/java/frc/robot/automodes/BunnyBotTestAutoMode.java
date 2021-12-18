@@ -13,6 +13,7 @@ import frc.robot.bunnybotsubsystem.BunnyBotSubsystem;
 import frc.robot.conveyor.ConveyorSubsystem;
 import frc.robot.intake.IntakePowerAction;
 import frc.robot.intake.IntakeSubsystem;
+import frc.robot.water.WaterSubsystem;
 
 public class BunnyBotTestAutoMode extends TestAutoMode {
     public BunnyBotTestAutoMode(BunnyBotAutoController ctrl) throws Exception {
@@ -22,6 +23,7 @@ public class BunnyBotTestAutoMode extends TestAutoMode {
         TankDriveSubsystem db = bunnybot.getTankDrive();
         IntakeSubsystem intake = bunnybot.getIntake() ;
         ConveyorSubsystem conveyor = bunnybot.getConveyorSubsystem() ;
+        WaterSubsystem water = bunnybot.getWater() ;
         MessageLogger logger = ctrl.getRobot().getMessageLogger() ;
 
         switch (getTestNumber()) {
@@ -93,7 +95,12 @@ public class BunnyBotTestAutoMode extends TestAutoMode {
                 addSubActionPair(conveyor, new MotorPowerAction(conveyor, 0.2, 0.2), true) ;
                 addSubActionPair(conveyor, new MotorPowerAction(conveyor, 0.4, 0.2), true) ;
                 addSubActionPair(conveyor, new MotorPowerAction(conveyor, 0.6, 5.0), true) ;
-                break ;            
+                break ;  
+                
+            
+            case 30:    // Simulate teleop dump   
+                addSubActionPair(water, new MotorPowerAction(water, getPower(), getDuration()), true) ;
+                break ;
         }
     }
 }
