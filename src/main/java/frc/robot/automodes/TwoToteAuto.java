@@ -55,6 +55,11 @@ public class TwoToteAuto extends BunnyBotAutoMode {
         primewater.addSubActionPair(water, water_prime_action_, true) ;
         // close gate
         primewater.addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
+        // if it's one tote, then turn on the intake
+        if(onetote) {
+            primewater.addSubActionPair(intake, new IntakePowerAction(logger, intake, "auto:power", "auto:power"), false);
+        }
+
         addAction(primewater) ;
 
         //
@@ -84,7 +89,7 @@ public class TwoToteAuto extends BunnyBotAutoMode {
             sa = new SequenceAction(logger) ;
             sa.addSubActionPair(conveyor, conveyor_close_gate_action_, true) ;
             sa.addSubActionPair(intake, new IntakePowerAction(logger, intake, "auto:power", "auto:power"), false);
-            sa.addAction(new DelayAction(ctrl.getRobot(), 1.0)) ;
+            sa.addAction(new DelayAction(ctrl.getRobot(), 2.0)) ;
             sa.addSubActionPair(intake, new IntakePowerAction(logger, intake, 0.0, 0.0), false);
 
             pa.addAction(sa) ;
