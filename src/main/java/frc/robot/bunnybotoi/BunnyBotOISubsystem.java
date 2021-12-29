@@ -17,7 +17,7 @@ public class BunnyBotOISubsystem extends OISubsystem {
 
     public BunnyBotOISubsystem(Subsystem parent, TankDriveSubsystem db)
             throws BadParameterTypeException, MissingParameterException {
-        super(parent, SubsystemName, db);
+        super(parent, SubsystemName, GamePadType.Xero1425Historic, db);
 
         int index ;
         MessageLogger logger = getRobot().getMessageLogger() ;
