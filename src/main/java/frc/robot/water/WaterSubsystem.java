@@ -16,7 +16,6 @@ public class WaterSubsystem extends MotorSubsystem {
     @Override
     public void postHWInit() {
         setDefaultAction(new MotorPowerAction(this, 0.0));
-    }
-    
+    }   
 }
 
